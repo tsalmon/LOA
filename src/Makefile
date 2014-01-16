@@ -1,14 +1,22 @@
-platolib: test.o Cases.o Jeu.o Joueur.o Plateau.o
-	++ -o platolib.exe test.o Cases.o Jeu.o Joueur.o Plateau.o
+CC=g++
+CFLAGS=-W -Wall -ansi -pedantic
+LDFLAGS=
+EXEC=platolib.exe
+SRC=$(wildcard *.cpp)
+OBJ=$(SRC:.c=.o) 
 
-test.o: test.cpp
-	@g++ test.cpp -c	
+all:$(EXEC)
 
-Cases.o: Cases.cpp
-	@g++ Cases.cpp -c
+$(EXEC): $(OBJ)
+	$(CC) -o $@ $^
 
-Jeu.o: Jeu.cpp
-	@g++ Jeu.cpp -c
+%.o: %.c
+	$(CC) -o $@ -c $< 
 
-Plateau.o: Plateau.cpp
-	@g++ Plateau.cpp -c
+.PHONY: clean mrproper
+
+clean:
+	rm -rf *.o
+
+mrproper: clean
+	rm -rf platolib.exe
