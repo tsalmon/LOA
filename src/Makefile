@@ -3,14 +3,14 @@ CFLAGS=-W -Wall -ansi -pedantic
 LDFLAGS=
 EXEC=platolib.exe
 SRC=$(wildcard *.cpp)
-OBJ=$(SRC:.c=.o) 
+OBJ=$(SRC:.cpp=.o) 
 
 all:$(EXEC)
 
 $(EXEC): $(OBJ)
 	$(CC) -o $@ $^
 
-%.o: %.c
+%.o: %.cpp
 	$(CC) -o $@ -c $< 
 
 .PHONY: clean mrproper
