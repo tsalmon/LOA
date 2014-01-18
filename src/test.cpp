@@ -1,6 +1,6 @@
 #include "Puissance4.hpp"
 
 int main(int argc, char **argv){
-  Puissance j = Puissance4();
+  Jeu *j = new Puissance4();
   return 0;
 }

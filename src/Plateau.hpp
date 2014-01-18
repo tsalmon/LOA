@@ -7,7 +7,7 @@ private:
   int m_nbColonnes;
   Cases **m_cases;
 public:
-  static Plateau getInstance ();
+  Plateau(){};
   Cases *getCase (int, int);
 };
 #endif
