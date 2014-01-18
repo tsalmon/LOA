@@ -9,5 +9,9 @@ private:
 public:
   Plateau(){};
   Cases *getCase (int, int);
+  bool isEmpty();
+  bool isFull();
+  Pion* morePions();
+  bool hasPion(Pion &);
 };
 #endif
