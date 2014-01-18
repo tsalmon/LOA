@@ -5,9 +5,9 @@ class Plateau{
 private:
   int m_nbLignes;
   int m_nbColonnes;
-  Cases **m_cases;
+  Cases m_cases[m_nbColonnes][m_nbLignes];
 public:
-  Plateau(){};
+  Plateau(int,int){};
   Cases *getCase (int, int);
   bool isEmpty();
   bool isFull();
