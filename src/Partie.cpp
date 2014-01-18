@@ -1,27 +1,28 @@
 #include "Partie.hpp"
 
 int Partie::joueTour (){
-  //joueurs.next();
+    jeu.peutJouer();
+    joueurs.next();
+    int fin=jeu.fini();
+    if (fin>=0){
+        return fin
+    }
+    joueurs.next();
+    return joueTour();
 }
 
-void Partie::victory (int){}
-void Partie::defaite (){}
-void Partie::egalite (){}
+Partie::Partie(Jeu j){
+    jeu = j;
+    plateau = new Plateau(jeu.getNbColonnes(), jeu.getNbLignes());
+    joueurs = new Joueur(jeu.getNbJoueur());
 
-Partie::Partie(int nb_joueurs){
-  /*
-  plateau = new Plateau();
-  joueurs = new Joueur[nb_joueurs];
-  for(int i = 0; i < nb_joueurs; i++){
-    joueurs[i] = new Joueur();
-  }
-  */
 }
 
 
-/*
-static Partie Partie::getPartie(){
-  static Partie instance;
-  return instance;
+Partie Partie::getPartie(){
+  return &instance;
 }
-*/
+
+Partie Partie::getJoueurs(){
+  return joueurs;
+}

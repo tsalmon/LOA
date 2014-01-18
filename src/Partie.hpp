@@ -5,18 +5,17 @@
 #include "Plateau.hpp"
 class Partie{
 private:
+    Jeu jeu;
   Joueur *joueurs;
   Plateau *plateau;
   static Partie laPartie;
   int i;
 public:
   int joueTour ();
-  void victory (int);
-  void defaite ();
-  void egalite ();
-  Partie(int nb_joueurs);
-  //Plateau& getPlateau ();
-  static Partie getPartie();
+  Partie(Jeu j);
+  Plateau& getPlateau ();
+  static Partie* getPartie();
+  Joueur getJoueurs(){return joueurs;}
 };
 
 #endif
