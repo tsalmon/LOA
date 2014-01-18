@@ -1,6 +1,6 @@
 #ifndef PLATEAU_HPP
 #define PLATEAU_HPP
-#include "Cases.hpp"
+#include "Case.hpp"
 class Plateau{
 private:
   int m_nbLignes;
