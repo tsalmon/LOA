@@ -3,12 +3,13 @@
 
 class Joueur{
 private:
-  
+  int nb_Joueurs;
   int m_current;
 public:
-  int getCourrant (); 
+  int getCourrant ();
+  int getNbJoueur();
   void next ();
-  Joueur ();
+  Joueur (int nbJoueurs);
 };
 
 #endif
