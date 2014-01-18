@@ -5,9 +5,11 @@
 using namespace std;
 class Pion{
 private:
-  string nom;
+    string nom;
+    Pion(string nom = "Nope");
 public:
-  virtual void deplacementsPossible (int, int);
+    virtual void deplacementsPossible (int, int);
+    friend class PionFactory;
 };
 
 #endif
