@@ -15,7 +15,7 @@ public:
   void defaite ();
   void egalite ();
   Partie(int nb_joueurs);
-  Plateau& getPlateau ();
+  //Plateau& getPlateau ();
   static Partie getPartie();
 };
 

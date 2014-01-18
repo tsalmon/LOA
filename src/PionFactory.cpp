@@ -1,10 +1,11 @@
+#include "Pion.hpp"
 class PionFactory{
 private:
   Pion* pions;
 public:
-  static Pion getPion (string); 
+  static Pion getPion (string);
 };
-
+/*
 
 PionFactory::PionFactory(){}
 PionFactory::PionFactory(PionFactory &){}
@@ -26,3 +27,4 @@ Pion *PionFactory::getPion(string nom)
     pions.push_back(*p);
     return &(*pions.end());
 }
+*/
