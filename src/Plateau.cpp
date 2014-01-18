@@ -2,57 +2,57 @@
 #include <vector>
 
 Plateau::Plateau(int x, int y){
-    m_nbColonnes=x;
-    m_nbLignes=y;
-    m_cases = new Cases[m_nbColonnes][m_nbLignes];
-    /*
-      for (int i=0;i< m_nbColonnes; i++){
-      for(int j=0;j< m_nbLignes; j++){
-      m_cases[i][j]=new Cases(m_nbColonnes,m_nbLignes);
+  m_nbColonnes=x;
+  m_nbLignes=y;
+  //m_cases = new Cases[x];
+  /*
+    for (int i=0;i< m_nbColonnes; i++){
+    for(int j=0;j< m_nbLignes; j++){
+    m_cases[i][j]=new Cases(m_nbColonnes,m_nbLignes);
+    }
+    }
+  */
+}
+
+Cases Plateau::getCase(int x,int y){
+  return m_cases[x][y];
+}
+
+bool Plateau::isEmpty(){
+  for (int i=0;i<m_nbColonnes;i++){
+    for(int j=0;j<m_nbLignes;j++){
+      if(m_cases[i][j].getPion()!=NULL){
+	return false;
       }
+    }
+  }
+  return true;
+}
+
+bool Plateau::isFull(){
+  for (int i=0;i<m_nbColonnes;i++){
+    for(int j=0;j<m_nbLignes;j++){
+      if(m_cases[i][j].getPion()==NULL){
+	return true;
       }
-    */
+    }
+  }
+  return false;
 }
 
-Plateau::getCase(int x,int y){
-    return m_cases[x][y];
-}
-
-Plateau::isEmpty(){
-    for (int i=0;i<m_nbColonnes;i++){
-        for(int j=0;j<m_nbLignes;j++){
-            if(m_cases[x][y].getPion()!=NULL){
-                return false;
-            }
-        }
+bool Plateau::hasPion(Pion *p){
+  for (int i=0;i<m_nbColonnes;i++){
+    for(int j=0;j<m_nbLignes;j++){
+      if(m_cases[i][j].getPion()==p){
+	return true;
+      }
     }
-    return true;
-    }
-
-Plateau::isFull(){
-    for (int i=0;i<m_nbColonnes;i++){
-        for(int j=0;j<m_nbLignes;j++){
-            if(m_cases[x][y].getPion()==NULL){
-                return true;
-            }
-        }
-    }
-    return false;
-    }
-
-Plateau::hasPion(pion &p){
-    for (int i=0;i<m_nbColonnes;i++){
-        for(int j=0;j<m_nbLignes;j++){
-            if(m_cases[x][y].getPion()==p){
-                return true;
-            }
-        }
-    }
-    return false;
+  }
+  return false;
 }
 
 
-Plateau::morePions(){
+int Plateau::morePions(){
   /* WHATWHATWHATWHAT
   vector<Pions> pions(0);
   vector<int> nbpion(0);
@@ -96,4 +96,5 @@ Plateau::morePions(){
       
     }
   }
+  return 0;
 }

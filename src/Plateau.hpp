@@ -7,11 +7,12 @@ private:
   int m_nbColonnes;
   Cases **m_cases;
 public:
+  
   Plateau(int,int);
-  Cases *getCase (int, int);
+  Cases getCase (int, int);
   bool isEmpty();
   bool isFull();
-  Pion* morePions();
-  bool hasPion(Pion &);
+  int morePions();
+  bool hasPion(Pion *);
 };
 #endif

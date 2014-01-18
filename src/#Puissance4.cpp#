@@ -4,7 +4,7 @@ Puissance4::Puissance4(){
 }
 
 bool Puissance4::peutJouer(){
-  return true;
+  return true
 }
 
 
