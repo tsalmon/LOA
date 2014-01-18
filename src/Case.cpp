@@ -1,4 +1,4 @@
-#include "Cases.hpp"
+#include "Case.hpp"
 
 Case::Case(unsigned int x, unsigned int y, Pion *p){
     this->coordonneX = x;

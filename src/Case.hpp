@@ -12,7 +12,7 @@ private:
 public:
   Case(unsigned int x, unsigned int y, Pion *ch=NULL);
   Pion *getPion () const;
-  void addPion (const Pion &p);
+  void addPion (Pion &p);
   void retirePion ();
   unsigned int getX();
   unsigned int getY();
