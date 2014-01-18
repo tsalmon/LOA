@@ -4,15 +4,17 @@
 #include <string>
 #include "Pion.hpp"
 using namespace std;
-class Cases{ 
+class Case{
 private:
-  int m_x;
-  int m_y;
-  Pion *m_pion;
+  unsigned int coordonneX;
+  unsigned int coordonneY;
+  Pion *pionImbrique;
 public:
-  Cases (int, int);
-  Pion* getPion ();
+  Case(unsigned int x, unsigned int y, Pion *ch=NULL);
+  Pion *getPion () const;
   void addPion (const Pion &p);
   void retirePion ();
+  unsigned int getX();
+  unsigned int getY();
 };
 #endif
