@@ -6,15 +6,17 @@
 class Partie{
 private:
   Joueur *joueurs;
-  Plateau plateau;
+  Plateau *plateau;
   static Partie laPartie;
+  int i;
 public:
-  void joueTour ();
+  int joueTour ();
   void victory (int);
   void defaite ();
   void egalite ();
-  Partie();
+  Partie(int nb_joueurs);
   Plateau& getPlateau ();
+  static Partie getPartie();
 };
 
 #endif

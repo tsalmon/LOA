@@ -1,6 +1,7 @@
 #ifndef JEU_HPP
 #define JEU_HPP
 #include <iostream>
+#include "Partie.hpp"
 using namespace std;
 class Jeu{
 private:

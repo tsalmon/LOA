@@ -3,8 +3,8 @@ Puissance4::Puissance4(){
   cout << "coucou" << endl;
 }
 
-bool Puissance4::peutJouer(){
-  while(false){
+int Puissance4::peutJouer(){
+  while(){
     
   }
   return false;
