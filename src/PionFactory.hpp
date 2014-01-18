@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 
-#include "Pion.h"
+#include "Pion.hpp"
 using namespace std;
 
 class PionFactory{
