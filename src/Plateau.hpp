@@ -1,13 +1,13 @@
 #ifndef PLATEAU_HPP
 #define PLATEAU_HPP
+#include "Cases.hpp"
 class Plateau{
 private:
   int m_nbLignes;
   int m_nbColonnes;
-  Case **m_cases;
-  static Plateau m_lePlateau;  
+  Cases **m_cases;
 public:
   static Plateau getInstance ();
-  Case getCase (int, int);
+  Cases *getCase (int, int);
 };
 #endif
