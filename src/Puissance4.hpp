@@ -3,17 +3,11 @@
 #include "Jeu.hpp"
 class Puissance4: public Jeu{
 public:
-  Puissance4(){};
-  ~Puissance4(){};
-  int fini();
-  bool peutJouer();
-  void newPartie ();
-  int getNbLignes();
-  int getNbColonnes();
-  int getNbJoueur();
-  //int **deplacementPossible (int x, int Y, string Nom);
-  string* getListePions ();
-  
+  Puissance4();//{Partie::getPartie()->setJeu(this);};
+  virtual ~Puissance4();
+  virtual int fini();
+  virtual bool peutJouer();
+  virtual void newPartie ();  
 };
 
 #endif

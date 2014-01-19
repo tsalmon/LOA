@@ -90,7 +90,7 @@ ostream &operator<<(ostream &os,const Plateau &b) {
 
 int Plateau::morePions(){
   int nbjoueurs=Partie::getPartie()->getNbJoueur();
-  int joueurs[nbjoueurs];
+  int *joueurs = new int[nbjoueurs];
 
   for (int k=0; k<nbjoueurs;k++){
         joueurs[k]=0;}
