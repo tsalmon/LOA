@@ -11,7 +11,7 @@ int Partie::joueTour (){
     return joueTour();
 }
 
-Partie::Partie(Jeu j){
+Partie::Partie(Jeu const &j){
     jeu = j;
     plateau = new Plateau(jeu.getNbColonnes(), jeu.getNbLignes());
     joueurs = new Joueur(jeu.getNbJoueur());
@@ -19,10 +19,6 @@ Partie::Partie(Jeu j){
 }
 
 
-Partie Partie::getPartie(){
+static Partie* Partie::getPartie(){
   return &instance;
-}
-
-Partie Partie::getJoueurs(){
-  return joueurs;
 }

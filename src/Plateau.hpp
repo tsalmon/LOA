@@ -5,11 +5,11 @@ class Plateau{
 private:
   int m_nbLignes;
   int m_nbColonnes;
-  Cases **m_cases;
+  Case **m_cases;
 public:
-  
+
   Plateau(int,int);
-  Cases getCase (int, int);
+  Case getCase (int, int);
   bool isEmpty();
   bool isFull();
   int morePions();
