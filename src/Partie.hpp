@@ -8,7 +8,7 @@ private:
     Jeu *jeu;
     Joueur *joueurs;
     Plateau *plateau;
-  void operator=(Partie &l){};
+  void operator=(Partie &){};
   Partie(Partie &);
 public:
   Partie(){}
