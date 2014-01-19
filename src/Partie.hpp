@@ -9,9 +9,13 @@ private:
     Joueur *joueurs;
     Plateau *plateau;
     static Partie laPartie;
+    Partie() {}
+    Partie(Partie &l) {}
+    void operator=(Partie &l) {}
+    ~Partie() {}
 public:
     int joueTour ();
-    Partie(Jeu const &j);
+    void setJeu(Jeu const &j);
     Plateau& getPlateau ();
     static Partie* getPartie();
     Joueur getJoueurs();

@@ -11,15 +11,18 @@ int Partie::joueTour (){
     return joueTour();
 }
 
-Partie::Partie(Jeu const &j){
+void Partie::setJeu(Jeu const &j){
     jeu = j;
     plateau = new Plateau(jeu.getNbColonnes(), jeu.getNbLignes());
     joueurs = new Joueur(jeu.getNbJoueur());
 }
 
-
-Partie* Partie::getPartie(){
+static Partie* Partie::getPartie(){
   return &laPartie;
 }
 
-Joueur Partie::getPartie(){return &joueurs;}
+Plateau* Partie::getPlateau(){
+  return &plateau;
+}
+
+Joueur* Partie::getPartie(){return &joueurs;}
