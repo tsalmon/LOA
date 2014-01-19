@@ -91,7 +91,10 @@ ostream &operator<<(ostream &os,const Plateau &b) {
 int Plateau::morePions(){
   int nbjoueurs=Partie::getPartie()->getNbJoueur();
   int joueurs[nbjoueurs];
-  
+
+  for (int k=0; k<nbjoueurs;k++){
+        joueurs[k]=0;}
+
   for(int i = 0 ; i < m_nbColonnes; i++){
     for(int j = 0 ; j < m_nbLignes; j++){
       if (m_cases[i][j]!=NULL){
@@ -112,10 +115,10 @@ int Plateau::morePions(){
   return (maxi==second) ? -1 : jmaxi;
 }
 
-int get_sizeX(){
+int Plateau::get_sizeX(){
   return m_nbLignes;
 }
 
-int get_sizeY(){
+int Plateau::get_sizeY(){
   return m_nbColonnes;
 }

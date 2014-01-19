@@ -3,8 +3,7 @@
 #include <iostream>
 using namespace std;
 class Jeu{
-private:
-  string* listePions;
+protected:
   int nbLignes;
   int nbColonnes;
   int nbJoueur;
@@ -16,7 +15,11 @@ public:
   virtual int getNbLignes()=0;
   virtual int getNbJoueur()=0;
   virtual int getNbColonnes()=0;
+<<<<<<< HEAD
   //virtual int **deplacementPossible (int x, int Y, string Nom) =0;
   virtual string* getListePions () =0;
+=======
+  virtual int **deplacementPossible (int x, int Y, string Nom) =0;
+>>>>>>> dames
 };
 #endif
