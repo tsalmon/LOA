@@ -15,7 +15,6 @@ Pion *PionFactory::getPion(string nom)
         if((*it).nom == nom)
             return &(*it);
     }
-    
     Pion *ch = new Pion(nom);
     pions.push_back(*ch);
     return &(*pions.end());

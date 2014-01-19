@@ -5,8 +5,7 @@
 #include "PionFactory.hpp"
 
 
-class Dames : public Jeu
-{
+class Dames : public Jeu{
     public:
         Dames();
         virtual ~Dames();
