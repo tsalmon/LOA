@@ -14,7 +14,7 @@ public:
     Partie(Jeu const &j);
     Plateau& getPlateau ();
     static Partie* getPartie();
-    Joueur getJoueurs(){return joueurs;}
+    Joueur getJoueurs();
 };
 
 #endif
