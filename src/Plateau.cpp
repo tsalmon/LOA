@@ -2,26 +2,26 @@
 #include <vector>
 
 Plateau::Plateau(int x, int y){
+  unsigned a = 0, b = 0;
   m_nbColonnes=x;
   m_nbLignes=y;
-  //m_cases = new Cases[x];
-  /*
-    for (int i=0;i< m_nbColonnes; i++){
+  m_cases = new Case**[x];
+  for (int i=0;i< m_nbColonnes; i++){
+    m_cases[i] = new Case*[y];
     for(int j=0;j< m_nbLignes; j++){
-    m_cases[i][j]=new Cases(m_nbColonnes,m_nbLignes);
-    }
-    }
-  */
+      m_cases[i][j] = new Case(a++, b++);
+    } 
+  }
 }
 
-Case Plateau::getCase(int x,int y){
+Case* Plateau::getCase(int x,int y){
   return m_cases[x][y];
 }
 
 bool Plateau::isEmpty(){
   for (int i=0;i<m_nbColonnes;i++){
     for(int j=0;j<m_nbLignes;j++){
-      if(m_cases[i][j].getPion()!=NULL){
+      if((*m_cases[i][j]).getPion()!=NULL){
 	return false;
       }
     }
@@ -32,7 +32,7 @@ bool Plateau::isEmpty(){
 bool Plateau::isFull(){
   for (int i=0;i<m_nbColonnes;i++){
     for(int j=0;j<m_nbLignes;j++){
-      if(m_cases[i][j].getPion()==NULL){
+      if((*m_cases[i][j]).getPion()==NULL){
 	return true;
       }
     }
@@ -43,7 +43,7 @@ bool Plateau::isFull(){
 bool Plateau::hasPion(Pion *p){
   for (int i=0;i<m_nbColonnes;i++){
     for(int j=0;j<m_nbLignes;j++){
-      if(m_cases[i][j].getPion()==p){
+      if((*m_cases[i][j]).getPion()==p){
 	return true;
       }
     }
