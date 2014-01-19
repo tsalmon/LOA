@@ -14,7 +14,7 @@ Plateau::Plateau(int x, int y){
   */
 }
 
-Cases Plateau::getCase(int x,int y){
+Case Plateau::getCase(int x,int y){
   return m_cases[x][y];
 }
 
