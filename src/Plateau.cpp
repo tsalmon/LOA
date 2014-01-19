@@ -101,6 +101,5 @@ int Plateau::morePions(){
             jmaxi=k;
         }
   }
-  if(maxi==second){return -1;}
-  return jmaxi;
+  return (maxi==second) ? -1 : jmaxi;
 }
