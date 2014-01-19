@@ -8,10 +8,10 @@ OBJ=$(SRC:.cpp=.o)
 all:$(EXEC)
 
 $(EXEC): $(OBJ)
-	$(CC) -o $@ $^
+	$(CC) -o $@ $^ $(CFLAGS)
 
 %.o: %.cpp
-	$(CC) -o $@ -c $< 
+	$(CC) -o $@ -c $< $(CFLAGS) 
 
 .PHONY: clean mrproper
 
