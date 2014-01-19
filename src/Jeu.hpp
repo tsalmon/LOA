@@ -11,8 +11,8 @@ public:
   virtual int fini () =0;
   virtual bool peutJouer () =0;
   virtual void newPartie () =0;
-  virtual int getNbLignes()=0;
-  virtual int getNbJoueur()=0;
-  virtual int getNbColonnes()=0;
+  virtual int getNbLignes(){return nbLignes;};
+  virtual int getNbJoueur(){return nbJoueur;};
+  virtual int getNbColonnes(){return nbColonnes;};
 };
 #endif
