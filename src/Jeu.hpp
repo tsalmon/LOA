@@ -1,6 +1,7 @@
 #ifndef JEU_HPP
 #define JEU_HPP
 #include <iostream>
+#include "PionFactory.hpp"
 using namespace std;
 class Jeu{
 protected:
@@ -8,7 +9,7 @@ protected:
   int nbColonnes;
   int nbJoueur;
 public:
-  //Jeu(){}
+  virtual void affichage()=0;
   virtual int fini () =0;
   virtual bool peutJouer () =0;
   virtual void newPartie () =0;

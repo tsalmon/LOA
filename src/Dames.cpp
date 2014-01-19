@@ -43,9 +43,18 @@ bool Dames::peutJouer(){
     else{
         choixPionDeplacement();
     }
-
+    return true;
 }
 
 Dames::~Dames()
 {
+}
+
+void Dames::choixPionPourRafle(vector<Case>){
+}
+
+void Dames::choixPionDeplacement(){
+}
+
+vector<Case> Dames::peuventRafler(){
 }
