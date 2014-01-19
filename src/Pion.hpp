@@ -7,14 +7,15 @@ class Pion{
 private:
     string nom;
     int jouer;
-    Pion(string nom="nope");
+    Pion(string nom="nope", char symbole='o');
     char symbole;
     friend class PionFactory;
 public:
     void setJouer(int);
     int getJouer();
     void setSymbole(char);
-    char getSymbole();
+    char getSymbole() const;
+    friend ostream &operator<<(ostream &,const Pion &);
 };
 
 
