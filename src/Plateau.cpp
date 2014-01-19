@@ -111,10 +111,10 @@ int Plateau::morePions(){
   return (maxi==second) ? -1 : jmaxi;
 }
 
-int get_sizeX(){
+int Plateau::get_sizeX(){
   return m_nbLignes;
 }
 
-int get_sizeY(){
+int Plateau::get_sizeY(){
   return m_nbColonnes;
 }
