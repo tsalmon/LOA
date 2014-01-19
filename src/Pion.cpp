@@ -5,12 +5,12 @@ Pion::Pion(string nom){
     this->nom = nom;
 }
 
-void Pion::setJouer(int j){
-    this->jouer = j;
+void Pion::setJoueur(int j){
+    this->joueur = j;
 }
 
-int Pion::getJouer(){
-    return this->jouer;
+int Pion::getJoueur(){
+    return this->joueur;
 }
 
 void Pion::setSymbole(char s){

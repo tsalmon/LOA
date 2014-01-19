@@ -1,5 +1,6 @@
 #include "Plateau.hpp"
 #include <vector>
+#include "Partie.hpp"
 
 Plateau::Plateau(int x, int y){
   unsigned a = 0, b = 0;
@@ -10,7 +11,7 @@ Plateau::Plateau(int x, int y){
     m_cases[i] = new Case*[y];
     for(int j=0;j< m_nbLignes; j++){
       m_cases[i][j] = new Case(a++, b++);
-    } 
+    }
   }
 }
 
@@ -64,7 +65,7 @@ void Plateau::effacerPionDeCase(unsigned int x, unsigned y){
 }
 
 ostream &operator<<(ostream &os,const Plateau &b) {
-    
+
     for(int i = 0; i<b.m_nbLignes; ++i){
         for (int j = 0; j<b.m_nbColonnes; ++j) {
             if(!b.m_cases[i][j]->getPion())
@@ -81,48 +82,25 @@ ostream &operator<<(ostream &os,const Plateau &b) {
 
 
 int Plateau::morePions(){
-  /* WHATWHATWHATWHAT
-  vector<Pions> pions(0);
-  vector<int> nbpion(0);
-  Pion current;
-  bool trouve;
-  for (int i=0;i<m_nbColonnes;i++){
-    for(int j=0;j<m_nbLignes;j++){
-      current=m_cases[i][j]
-	for(int k=0;k<pions.size();k++){
-	  if(current.getPion()==pions[k]){
-	    nbpion[k]++;
-	    trouve=true;
-	  }
-	}
-      if(trouve==false){
-	pions.push_back(current);
-	nbpion.push_back(1);
-      }
-      trouve=false
-        }
-  }
-  int maxi=0;
-  int joueur_associe=0;
-  for(int k=0;k<pions.size();k++){
-    if(nbpion[k]>maxi){
-      maxi=nbpion[k];
-      joueur_associe=pions[k].getJoueur();
-    }
-  }
-  for(int k=0;k<pions.size();k++){
-    if(nbpion[k]==maxi and joueur_associe!=pions[k].getJoueur(){
-        return -1;
-      }
-      }
-    return joueur_associe;
-  }
-  */
-  
+  int nbjoueurs=Partie::getPartie()->getNbJoueur();
+  int j[nbjoueurs];
   for(int i = 0 ; i < m_nbColonnes; i++){
     for(int j = 0 ; j < m_nbLignes; j++){
-      
+      if (m_cases[i][j]!=NULL){
+        j[m_cases[i][j].getPion().getJoueur()]++;
+      }
     }
   }
-  return 0;
+  int maxi=0;
+  int second=0;
+  int jmaxi;
+  for (int i=0; i<nbjoueurs;i++){
+        if(j[i]>= maxi){
+            second=maxi;
+            maxi=j[i];
+            jmaxi=i;
+        }
+  }
+  if(maxi==second){return -1}
+  return i;
 }
