@@ -1,6 +1,10 @@
 #include "Puissance4.hpp"
-Puissance4::Puissance4(){
-  cout << "coucou" << endl;
+
+Puissance4::Puissance4(int nb){
+  int nb_joueurs = nb;
+}
+
+int fini(){
 }
 
 bool Puissance4::peutJouer(){
@@ -9,6 +13,17 @@ bool Puissance4::peutJouer(){
 
 
 void Puissance4::newPartie (){
+  
+}
+
+int getNbLignes(){
+}
+
+int getNbColonnes(){
+}
+
+
+int getNbJoueur(){
   
 }
 

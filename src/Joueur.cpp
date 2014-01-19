@@ -2,7 +2,7 @@
 
 
 Joueur::Joueur(int nbJoueurs){
-    nb_Joueurs=nbJoueurs;
+  nb_Joueurs=nbJoueurs;
     m_current=1;
 }
 
@@ -15,10 +15,5 @@ int Joueur::getNbJoueur(){
 }
 
 void Joueur::next(){
-    if (m_current==nb_Joueurs){
-        m_current=1;
-    }
-    else{
-        m_current++;
-    }
+  m_current = (m_current + 1) % nb_Joueurs;
 }

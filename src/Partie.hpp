@@ -14,11 +14,11 @@ private:
     void operator=(Partie &l);
     ~Partie() {}
 public:
-    static Partie* getPartie();
-    int joueTour ();
-    void setJeu(Jeu *j);
-    Plateau & getPlateau();
-    Joueur *getJoueurs();
+  static Partie* getPartie();
+  int joueTour ();
+  void setJeu(Jeu *j);
+  Plateau & getPlateau();
+  Joueur *getJoueurs();
+  int getNbJoueur();
 };
-
 #endif
