@@ -7,7 +7,7 @@ class Pion{
 private:
     string nom;
     int joueur;
-    Pion(string nom="nope", char symbole='o');
+    Pion(string nom);
     char symbole;
     friend class PionFactory;
 public:

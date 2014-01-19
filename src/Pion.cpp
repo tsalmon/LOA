@@ -1,9 +1,8 @@
 #include "Pion.hpp"
 
 
-Pion::Pion(string nom, char symbole){
+Pion::Pion(string nom){
     this->nom = nom;
-    this->symbole = symbole;
 }
 
 void Pion::setJoueur(int j){

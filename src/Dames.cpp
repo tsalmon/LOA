@@ -10,10 +10,9 @@ Dames::Dames()
     PionFactory &factory=PionFactory::getInstance();
     blanc = factory->getPion("blanc");
     noir = factory->getPion("noir");
-
 }
 
-Dames::newPartie(){
+void Dames::newPartie(){
     Plateau *p = Partie::getPlateau();
     for (int i=0;i<p->get_sizeX();i++){
         for (int j=0;j<p->get_sizeY();j++){
@@ -24,6 +23,9 @@ Dames::newPartie(){
         }
     }
 }
+
+int Dames::fini(){return 0;}
+
 
 Dames::~Dames()
 {
