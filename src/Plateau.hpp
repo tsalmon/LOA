@@ -14,5 +14,9 @@ public:
   bool isFull();
   int morePions();
   bool hasPion(Pion *);
+  void mettrePionDansCase(Pion &checker, unsigned int x, unsigned int y);
+  void effacerPionDeCase(unsigned int x, unsigned y);
+  Pion *pionDansCase(unsigned int x, unsigned int y);
+  friend ostream &operator<<(ostream &,const Plateau &);
 };
 #endif

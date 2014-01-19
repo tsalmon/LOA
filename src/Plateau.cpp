@@ -51,6 +51,34 @@ bool Plateau::hasPion(Pion *p){
   return false;
 }
 
+void Plateau::mettrePionDansCase(Pion &pion, unsigned int x, unsigned int y){
+    this->m_cases[x][y]->addPion(pion);
+}
+
+Pion *Plateau::pionDansCase(unsigned int x, unsigned int y){
+    return this->m_cases[x][y]->getPion();
+}
+
+void Plateau::effacerPionDeCase(unsigned int x, unsigned y){
+    this->m_cases[x][y]->retirePion();
+}
+
+ostream &operator<<(ostream &os,const Plateau &b) {
+    
+    for(int i = 0; i<b.m_nbLignes; ++i){
+        for (int j = 0; j<b.m_nbColonnes; ++j) {
+            if(!b.m_cases[i][j]->getPion())
+            {
+                os << "☐ ";
+            } else {
+                os << b.m_cases[i][j]->getPion()->getSymbole()<<" ";
+            }
+        }
+        os<<endl;;
+    }
+    return os;
+}
+
 
 int Plateau::morePions(){
   /* WHATWHATWHATWHAT
