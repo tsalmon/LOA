@@ -10,6 +10,8 @@ Dames::Dames()
     PionFactory &factory=PionFactory::getInstance();
     blanc = factory.getPion("blanc");
     noir = factory.getPion("noir");
+    blancR = factory.getPion("blancR");
+    noirR = factory.getPion("noirR");
 }
 
 void Dames::newPartie(){
@@ -24,8 +26,18 @@ void Dames::newPartie(){
     }
 }
 
-int Dames::fini(){}
+int Dames::fini(){
+    Plateau *p=Partie::getPartie()->getPlateau();
+    if (!p->hasPion(noir)){return 0;}
+    else if (!p->hasPion(blanc)){return 1;}
+    else{return -1;}
+}
 
+
+bool Dames::peutJouer(){
+    int joueur=Partie::getPartie()->getJoueurs()->getCourrant();
+    if
+}
 
 Dames::~Dames()
 {

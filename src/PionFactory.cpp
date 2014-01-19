@@ -19,4 +19,3 @@ Pion *PionFactory::getPion(string nom)
     pions.push_back(*ch);
     return &(*pions.end());
 }
-

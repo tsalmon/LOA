@@ -8,8 +8,6 @@ private:
     string nom;
     int joueur;
     Pion(string nom);
-    Pion(){};
-    Pion(Pion const& p);
     char symbole;
     friend class PionFactory;
 public:

@@ -15,6 +15,8 @@ class Dames : public Jeu{
     protected:
         Pion *noir;
         Pion *blanc;
+        Pion *noirR;
+        Pion *blancR;
     private:
 };
 
