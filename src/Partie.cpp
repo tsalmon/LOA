@@ -37,4 +37,5 @@ Joueur *Partie::getJoueurs(){
 }
 
 int Partie::getNbJoueur(){
+    return 0;
 }
