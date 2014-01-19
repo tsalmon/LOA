@@ -28,15 +28,15 @@ void Dames::newPartie(){
 
 int Dames::fini(){
     Plateau *p=Partie::getPartie()->getPlateau();
-    if (!p->hasPion(noir)){return 0;}
-    else if (!p->hasPion(blanc)){return 1;}
+    if (!p->hasPion(noir) and !p->hasPion(noirR)){return 0;}
+    else if (!p->hasPion(blanc) and !p->hasPion(blancR)){return 1;}
     else{return -1;}
 }
 
 
 bool Dames::peutJouer(){
     int joueur=Partie::getPartie()->getJoueurs()->getCourrant();
-    if
+
 }
 
 Dames::~Dames()
