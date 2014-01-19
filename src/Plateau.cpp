@@ -87,20 +87,20 @@ int Plateau::morePions(){
   for(int i = 0 ; i < m_nbColonnes; i++){
     for(int j = 0 ; j < m_nbLignes; j++){
       if (m_cases[i][j]!=NULL){
-        j[m_cases[i][j].getPion().getJoueur()]++;
+        j[m_cases[i][j]->getPion()->getJoueur()]++;
       }
     }
   }
   int maxi=0;
   int second=0;
   int jmaxi;
-  for (int i=0; i<nbjoueurs;i++){
-        if(j[i]>= maxi){
+  for (int k=0; k<nbjoueurs;k++){
+        if(j[k]>= maxi){
             second=maxi;
-            maxi=j[i];
-            jmaxi=i;
+            maxi=j[k];
+            jmaxi=k;
         }
   }
-  if(maxi==second){return -1}
-  return i;
+  if(maxi==second){return -1;}
+  return jmaxi;
 }
