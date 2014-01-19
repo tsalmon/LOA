@@ -17,7 +17,10 @@ Dames::newPartie(){
     Plateau *p = Partie::getPlateau();
     for (int i=0;i<p->get_sizeX();i++){
         for (int j=0;j<p->get_sizeY();j++){
-            if(j%2!=i%2)
+            if(j%2!=i%2){
+                if(j<4){p->mettrePionDansCase(noir);}
+                if(j>=6){p->mettrePionDansCase(blanc);}
+            }
         }
     }
 }

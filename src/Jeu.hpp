@@ -14,6 +14,5 @@ public:
   virtual int getNbLignes()=0;
   virtual int getNbJoueur()=0;
   virtual int getNbColonnes()=0;
-  virtual string* getListePions () =0;
 };
 #endif
