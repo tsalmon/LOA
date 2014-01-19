@@ -6,12 +6,12 @@ Pion::Pion(string nom, char symbole){
     this->symbole = symbole;
 }
 
-void Pion::setJouer(int j){
-    this->jouer = j;
+void Pion::setJoueur(int j){
+    this->joueur = j;
 }
 
-int Pion::getJouer(){
-    return this->jouer;
+int Pion::getJoueur(){
+    return this->joueur;
 }
 
 void Pion::setSymbole(char s){
@@ -26,3 +26,4 @@ ostream &operator<<(ostream &os,const Pion &p) {
     os << p.getSymbole();
     return os;
 }
+

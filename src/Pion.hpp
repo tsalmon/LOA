@@ -6,13 +6,13 @@ using namespace std;
 class Pion{
 private:
     string nom;
-    int jouer;
+    int joueur;
     Pion(string nom="nope", char symbole='o');
     char symbole;
     friend class PionFactory;
 public:
-    void setJouer(int);
-    int getJouer();
+    void setJoueur(int);
+    int getJoueur();
     void setSymbole(char);
     char getSymbole() const;
     friend ostream &operator<<(ostream &,const Pion &);
