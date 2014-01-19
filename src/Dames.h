@@ -3,6 +3,8 @@
 
 #include "Jeu.hpp"
 #include "PionFactory.hpp"
+#include <vector>
+#include "Case.hpp"
 
 
 class Dames : public Jeu{
@@ -17,6 +19,10 @@ class Dames : public Jeu{
         Pion *blanc;
         Pion *noirR;
         Pion *blancR;
+        vector<Case> peuventRafler();
+        void choixPionPourRafle(vector<Case>);
+        void choixPionDeplacement();
+
     private:
 };
 

@@ -36,6 +36,13 @@ int Dames::fini(){
 
 bool Dames::peutJouer(){
     int joueur=Partie::getPartie()->getJoueurs()->getCourrant();
+    vector<Case> peuventPrendre= peuventRafler();
+    if (peuventPrendre.size()!=0){
+        choixPionPourRafle(peuventPrendre);
+    }
+    else{
+        choixPionDeplacement();
+    }
 
 }
 

@@ -15,6 +15,7 @@ void Partie::setJeu(Jeu *j){
     this->jeu = j;
     plateau = new Plateau(jeu->getNbColonnes(), jeu->getNbLignes());
     joueurs = new Joueur(j->getNbJoueur());
+    jeu->newPartie();
 }
 
 Partie *Partie::getPartie(){
