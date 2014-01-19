@@ -3,7 +3,7 @@
 
 Joueur::Joueur(int nbJoueurs){
   nb_Joueurs=nbJoueurs;
-    m_current=1;
+  m_current=1;
 }
 
 int Joueur::getCourrant(){

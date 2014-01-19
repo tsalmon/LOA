@@ -20,5 +20,6 @@ public:
     Plateau &getPlateau();
     Joueur *getJoueurs();
     int getNbJoueur();
+    void affiche();  
 };
 #endif
