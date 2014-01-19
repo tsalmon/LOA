@@ -1,21 +1,21 @@
-#ifndef PION_HPP
-#define PION_HPP
+#ifndef __Projet__Checker__
+#define __Projet__Checker__
+
 #include <iostream>
-#include <string>
 using namespace std;
 class Pion{
 private:
     string nom;
     int jouer;
+    Pion(string nom="nope");
     char symbole;
-    Pion(string nom = "Nope");
+    friend class PionFactory;
 public:
-    virtual void deplacementsPossible (int, int);
     void setJouer(int);
     int getJouer();
     void setSymbole(char);
     char getSymbole();
-    friend class PionFactory;
 };
 
-#endif
+
+#endif /* defined(__Projet__Checker__) */

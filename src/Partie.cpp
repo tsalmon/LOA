@@ -1,9 +1,14 @@
 #include "Partie.hpp"
 
+
+Partie::Partie(){}
+Partie::Partie(Partie &l){}
+void Partie::operator=(Partie &l){}
+
 int Partie::joueTour (){
-    jeu.peutJouer();
+    jeu->peutJouer();
     joueurs->next();
-    int fin=jeu.fini();
+    int fin=jeu->fini();
     if (fin>=0){
         return fin;
     }
@@ -11,18 +16,21 @@ int Partie::joueTour (){
     return joueTour();
 }
 
-void Partie::setJeu(Jeu const &j){
-    jeu = j;
-    plateau = new Plateau(jeu.getNbColonnes(), jeu.getNbLignes());
-    joueurs = new Joueur(jeu.getNbJoueur());
+void Partie::setJeu(Jeu *j){
+    this->jeu = j;
+    plateau = new Plateau(jeu->getNbColonnes(), jeu->getNbLignes());
+    joueurs = new Joueur(jeu->getNbJoueur());
 }
 
-static Partie* Partie::getPartie(){
-  return &laPartie;
+Partie *Partie::getPartie(){
+    static Partie instance;
+    return &instance;
 }
 
-Plateau* Partie::getPlateau(){
-  return &plateau;
+Plateau &Partie::getPlateau(){
+  return *plateau;
 }
 
-Joueur* Partie::getPartie(){return &joueurs;}
+Joueur *Partie::getJoueurs(){
+    return joueurs;
+}
