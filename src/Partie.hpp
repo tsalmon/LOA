@@ -8,16 +8,16 @@ private:
     Jeu *jeu;
     Joueur *joueurs;
     Plateau *plateau;
-    //static Partie laPartie;
+    
     Partie();
     Partie(Partie &l);
     void operator=(Partie &l);
-    ~Partie() {}
+    ~Partie();
 public:
-    static Partie* getPartie();
+    static Partie *getPartie();
     int joueTour ();
     void setJeu(Jeu *j);
-    Plateau & getPlateau();
+    Plateau &getPlateau();
     Joueur *getJoueurs();
 };
 
