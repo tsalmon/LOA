@@ -13,6 +13,9 @@ Pion *Case::getPion() const{
 void Case::addPion(Pion &p){
     this->pionImbrique = &p;
 }
+bool Case::hasPion(){
+    return this->pionImbrique != NULL;
+}
 
 void Case::retirePion(){
     this->pionImbrique = NULL;
