@@ -19,6 +19,6 @@ public:
     void setJeu(Jeu *j);
     Plateau &getPlateau();
     Joueur *getJoueurs();
+    int getNbJoueur();
 };
-
 #endif

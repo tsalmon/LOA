@@ -20,7 +20,7 @@ int Partie::joueTour (){
 void Partie::setJeu(Jeu *j){
     this->jeu = j;
     plateau = new Plateau(jeu->getNbColonnes(), jeu->getNbLignes());
-    joueurs = new Joueur(jeu->getNbJoueur());
+    joueurs = new Joueur(j->getNbJoueur());
 }
 
 Partie *Partie::getPartie(){
@@ -34,4 +34,7 @@ Plateau &Partie::getPlateau(){
 
 Joueur *Partie::getJoueurs(){
     return joueurs;
+}
+
+int Partie::getNbJoueur(){
 }
