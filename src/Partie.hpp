@@ -7,19 +7,18 @@ class Partie{
 private:
     Jeu *jeu;
     Joueur *joueurs;
-    Plateau *plateau;
-    
-    Partie();
-    Partie(Partie &l);
-    void operator=(Partie &l);
-    ~Partie();
+    Plateau *plateau;    
+  void operator=(Partie &l){};
+  Partie(Partie &);
 public:
-    static Partie *getPartie();
-    int joueTour ();
-    void setJeu(Jeu *j);
-    Plateau &getPlateau();
-    Joueur *getJoueurs();
-    int getNbJoueur();
-    void affiche();  
+  Partie(){}
+  ~Partie(){};
+  static Partie *getPartie();
+  int joueTour ();
+  void setJeu(Jeu *j);
+  Plateau &getPlateau();
+  Joueur *getJoueurs();
+  int getNbJoueur();
+  void affiche();  
 };
 #endif

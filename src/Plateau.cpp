@@ -91,6 +91,7 @@ ostream &operator<<(ostream &os,const Plateau &b) {
 int Plateau::morePions(){
   int nbjoueurs=Partie::getPartie()->getNbJoueur();
   int joueurs[nbjoueurs];
+  
   for(int i = 0 ; i < m_nbColonnes; i++){
     for(int j = 0 ; j < m_nbLignes; j++){
       if (m_cases[i][j]!=NULL){

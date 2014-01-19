@@ -1,23 +1,19 @@
-#ifndef P_4
-#define P_4
-
+#ifndef P4_HPP
+#define P4_HPP
 #include "Jeu.hpp"
 class Puissance4: public Jeu{
-  //private:
-  /*string* listePions;
-  int nbLignes;
-  int nbColonnes;
-  int nbJoueur;  */
 public:
-  //Puissance4();
-  virtual int fini();
-  virtual bool peutJouer();
-  virtual void newPartie ();
-  virtual int getNbLignes();
-  virtual int getNbColonnes();
-  virtual int getNbJoueur();
-  virtual int **deplacementPossible (int x, int Y, string Nom);
-  virtual string* getListePions ();
+  Puissance4(){};
+  ~Puissance4(){};
+  int fini();
+  bool peutJouer();
+  void newPartie ();
+  int getNbLignes();
+  int getNbColonnes();
+  int getNbJoueur();
+  //int **deplacementPossible (int x, int Y, string Nom);
+  string* getListePions ();
+  
 };
 
 #endif

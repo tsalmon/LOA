@@ -1,9 +1,5 @@
 #include "Puissance4.hpp"
-/*
-Puissance4::Puissance4(){
-  //int nb_joueurs = nb;
-}
-*/
+
 int fini(){
     return 0;
 }
@@ -30,12 +26,13 @@ int getNbJoueur(){
     return 0;
 }
 
+/*
 int **Puissance4::deplacementPossible (int x, int Y, string Nom){
-    int **i;
-    return i;
+    return NULL;
 }
-
+*/
 string* Puissance4::getListePions (){
-    string *str;
+  string *str = new string("");
     return str;
 }
+

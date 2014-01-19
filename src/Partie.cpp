@@ -1,11 +1,5 @@
 #include "Partie.hpp"
 
-
-Partie::Partie(){}
-Partie::Partie(Partie &l){}
-void Partie::operator=(Partie &l){}
-Partie::~Partie(){};
-
 int Partie::joueTour (){
     jeu->peutJouer();
     joueurs->next();

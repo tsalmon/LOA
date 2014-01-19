@@ -1,7 +1,7 @@
+#include "Partie.hpp"
 #include "Puissance4.hpp"
 
-int main(int argc, char **argv){
-  
-  //Jeu *j = new Puissance4();
+int main(){
+  Puissance4 p4();
   return 0;
 }
