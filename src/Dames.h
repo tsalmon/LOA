@@ -9,9 +9,12 @@ class Dames : public Jeu{
     public:
         Dames();
         virtual ~Dames();
+        virtual int fini ();
+        virtual bool peutJouer();
+        virtual void newPartie();
     protected:
-        Pion noir;
-        Pion blanc;
+        Pion *noir;
+        Pion *blanc;
     private:
 };
 

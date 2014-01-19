@@ -7,7 +7,7 @@ class Partie{
 private:
     Jeu *jeu;
     Joueur *joueurs;
-    Plateau *plateau;    
+    Plateau *plateau;
   void operator=(Partie &l){};
   Partie(Partie &);
 public:
@@ -16,9 +16,9 @@ public:
   static Partie *getPartie();
   int joueTour ();
   void setJeu(Jeu *j);
-  Plateau &getPlateau();
+  Plateau *getPlateau();
   Joueur *getJoueurs();
   int getNbJoueur();
-  void affiche();  
+  void affiche();
 };
 #endif

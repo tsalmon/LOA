@@ -22,8 +22,8 @@ Partie *Partie::getPartie(){
     return &instance;
 }
 
-Plateau &Partie::getPlateau(){
-  return *plateau;
+Plateau *Partie::getPlateau(){
+  return plateau;
 }
 
 Joueur *Partie::getJoueurs(){
@@ -35,5 +35,5 @@ int Partie::getNbJoueur(){
 }
 
 void Partie::affiche(){
-  
+
 }
