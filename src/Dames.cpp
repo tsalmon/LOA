@@ -1,6 +1,7 @@
 #include "Dames.h"
 #include "Partie.hpp"
 #include "Plateau.hpp"
+#include <iostream>
 
 Dames::Dames()
 {
@@ -12,6 +13,7 @@ Dames::Dames()
     noir = factory.getPion("noir");
     blancR = factory.getPion("blancR");
     noirR = factory.getPion("noirR");
+    Partie::getPartie()->setJeu(this);
 }
 
 void Dames::newPartie(){
@@ -33,6 +35,17 @@ int Dames::fini(){
     else{return -1;}
 }
 
+vector<Case> Dames::peuventRafler(){
+    Plateau *p=Partie::getPartie()->getPlateau();
+    for (int i=0;i<p->get_sizeX();i++){
+        for (int j=0;j<p->get_sizeY();j++){
+            Pion *pion =p->getCase(i,j)->getPion();
+            if(pion!=NULL){
+
+            }
+        }
+    }
+}
 
 bool Dames::peutJouer(){
     int joueur=Partie::getPartie()->getJoueurs()->getCourrant();
@@ -43,18 +56,31 @@ bool Dames::peutJouer(){
     else{
         choixPionDeplacement();
     }
-    return true;
+
+}
+
+
+void Dames::rafle(Case c){
+}
+
+void Dames::choixPionPourRafle(vector<Case> cases){
+    std::cout << "Obligation de prendre des pieces adverses. "
+     << "Choisissez la pièce avec laquelle rafler : "<<std::endl;
+    for(int i=0;i<cases.size();i++){
+        std::cout << "[" << i << "] : (" << cases[i].getX()<< ","<<
+         cases[i].getY() << ")" << std::endl;
+    }
+    std::cout << "Numéro du choix : ";
+    int num;
+    std::cin >> num;
+    while(!(cin and num<cases.size())){
+        std::cout << "Erreur ! Entrez le numero du pion à jouer : ";
+        std::cin.clear();
+        std::cin >> num;
+    }
+    rafle(cases[num]);
 }
 
 Dames::~Dames()
 {
-}
-
-void Dames::choixPionPourRafle(vector<Case>){
-}
-
-void Dames::choixPionDeplacement(){
-}
-
-vector<Case> Dames::peuventRafler(){
 }

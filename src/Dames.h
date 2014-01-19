@@ -22,6 +22,7 @@ class Dames : public Jeu{
         vector<Case> peuventRafler();
         void choixPionPourRafle(vector<Case>);
         void choixPionDeplacement();
+        void rafle(Case);
 
     private:
 };
