@@ -7,7 +7,8 @@ private:
   int m_nbColonnes;
   Case*** m_cases;
 public:
-
+  int get_sizeX();
+  int get_sizeY();
   Plateau(int,int);
   Case* getCase (int, int);
   bool isEmpty();

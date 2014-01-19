@@ -39,3 +39,7 @@ Joueur *Partie::getJoueurs(){
 int Partie::getNbJoueur(){
     return 0;
 }
+
+void Partie::affiche(){
+  
+}
