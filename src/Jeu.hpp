@@ -8,11 +8,12 @@ protected:
   int nbColonnes;
   int nbJoueur;
 public:
+  //Jeu(){}
   virtual int fini () =0;
   virtual bool peutJouer () =0;
   virtual void newPartie () =0;
-  virtual int getNbLignes(){return nbLignes;};
-  virtual int getNbJoueur(){return nbJoueur;};
-  virtual int getNbColonnes(){return nbColonnes;};
+  virtual int getNbLignes();
+  virtual int getNbJoueur();
+  virtual int getNbColonnes();
 };
 #endif

@@ -13,16 +13,16 @@ void Puissance4::newPartie (){
   
 }
 
-int getNbLignes(){
+int Puissance4::getNbLignes(){
     return 0;
 }
 
-int getNbColonnes(){
+int Puissance4::getNbColonnes(){
     return 0;
 }
 
 
-int getNbJoueur(){
+int Puissance4::getNbJoueur(){
     return 0;
 }
 
