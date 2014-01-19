@@ -1,9 +1,9 @@
 #include "Puissance4.hpp"
-
-Puissance4::Puissance4(int nb){
-  int nb_joueurs = nb;
+/*
+Puissance4::Puissance4(){
+  //int nb_joueurs = nb;
 }
-
+*/
 int fini(){
 }
 

@@ -2,6 +2,6 @@
 
 int main(int argc, char **argv){
   
-  Jeu *j = new Puissance4(2);
+  //Jeu *j = new Puissance4();
   return 0;
 }

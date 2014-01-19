@@ -9,7 +9,7 @@ class Puissance4: public Jeu{
   int nbColonnes;
   int nbJoueur;  */
 public:
-  Puissance4(int);
+  //Puissance4();
   virtual int fini();
   virtual bool peutJouer();
   virtual void newPartie ();
