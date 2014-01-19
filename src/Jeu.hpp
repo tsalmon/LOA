@@ -1,7 +1,6 @@
 #ifndef JEU_HPP
 #define JEU_HPP
 #include <iostream>
-#include "Partie.hpp"
 using namespace std;
 class Jeu{
 private:
@@ -10,6 +9,7 @@ private:
   int nbColonnes;
   int nbJoueur;
 public:
+  virtual int fini () =0;
   virtual bool peutJouer () =0;
   virtual void newPartie () =0;
   virtual int getNbLignes()=0;
