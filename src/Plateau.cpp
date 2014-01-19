@@ -72,7 +72,7 @@ ostream &operator<<(ostream &os,const Plateau &b) {
             {
                 os << "☐ ";
             } else {
-                os << b.m_cases[i][j]->getPion()->getSymbole()<<" ";
+                os << *(b.m_cases[i][j]->getPion())<<" ";
             }
         }
         os<<endl;;
