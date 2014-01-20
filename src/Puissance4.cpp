@@ -2,19 +2,18 @@
 
 
 Puissance4::Puissance4(){
-  cout << "==== Puissance 4 ====" << endl;
+ cout << "==== Othello ==== " << endl;
   
-  pO = PionFactory::getInstance().getPion("O");
-  pO->setJoueur(0);
+  nbJoueur=2;
+  nbLignes=7;
+  nbColonnes=7;
+  PionFactory &factory=PionFactory::getInstance();
+  pO = factory.getPion("blanc");
   pO->setSymbole('O');
-  pX = PionFactory::getInstance().getPion("X");
+  pX = factory.getPion("noir");
   pX->setSymbole('X');
   pX->setJoueur(1);
-  
-  nbJoueur = 2;
-  nbColonnes = 7;
-  nbLignes = 6;
-
+  pO->setJoueur(0);
   Partie::getPartie()->setJeu(this);
 }
 
@@ -93,7 +92,7 @@ void Puissance4::newPartie (){
       for(;i < nbLignes && not p->hasPion(i, choix_pos); i++){}
     }while(choix_pos < 0 || 
 	   choix_pos > nbLignes || 
-	   (i == 0 && p->hasPion(i, choix_pos)));
+	   (i == 0 && p->hasPion(choix_pos, i)));
     i = (i==0)? 0 : i-1;
     if(j->getCourrant() == 0){
       p->mettrePionDansCase(pO, i, choix_pos);
@@ -103,6 +102,7 @@ void Puissance4::newPartie (){
   }while(not hasP4(i, choix_pos));
   affichage();
   cout << "Le joueur " << j->getCourrant() << "a gagné "<<  endl; 
+  
 }
 
 void Puissance4::affichage(){
@@ -111,16 +111,16 @@ void Puissance4::affichage(){
     for(int j = 0; j< nbColonnes ; j++){
       if(p->hasPion(i, j)){
 	switch(p->getCase(i, j)->getPion()->getJoueur()){
-	case 49: cout << "O "; break;
-	case 65: cout << "X "; break;
-	}
-      } else {
+	  case 0: cout << "O "; break;
+	  case 1: cout << "X "; break;
+	}	
+      }else {
 	cout << ". ";
       }
     }
     cout << endl;
   }
-  for(int j = 0; j< nbColonnes; j++){
+  for(int j = 0; j< nbLignes; j++){
     cout << j << " " ;
   }
   cout << endl;
