@@ -18,7 +18,7 @@ Puissance4::Puissance4(){
 }
 
 int Puissance4::get_j(){
-  return ((Partie::getPartie()->getJoueurs()->getCourrant() == 0) ? 49 : 65);
+  return (Partie::getPartie()->getJoueurs()->getCourrant());
 }
 
 Puissance4::~Puissance4(){}
@@ -33,7 +33,7 @@ bool Puissance4::peutJouer(){
 
 void Puissance4::hasP4_sens(int i, int j, int *sens, bool *stop){
   if((not stop[0]) && i > -1 && j > -1 && i<getNbLignes() && j<getNbColonnes()){
-    if(not HAS_PION(i, j)|| GET_CASE(i, j)->getPion()->getJoueur() !=get_j()){
+    if(not HAS_PION(i, j)|| GET_CASE(i, j)->getPion()->getJoueur() != get_j()){
       *stop = true;
     } else {
       (*sens)++;
@@ -83,11 +83,11 @@ void Puissance4::newPartie (){
   j->next();
   do{
     j->next();
-    cout << j->getCourrant()<< endl;
+    cout << "Joueur "<< j->getCourrant()<< endl;
     affichage();
     do{
       i = 0;
-      cout << "choissisez une position : " << endl;
+      cout << "choisissez une position : " << endl;
       cin >> choix_pos;
       for(;i < nbLignes && not p->hasPion(i, choix_pos); i++){}
     }while(choix_pos < 0 || 
