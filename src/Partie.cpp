@@ -37,5 +37,5 @@ int Partie::getNbJoueur(){
 }
 
 void Partie::affiche(){
-
+    std::cout<<*plateau<<std::endl;
 }

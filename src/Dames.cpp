@@ -32,6 +32,7 @@ void Dames::newPartie(){
             }
         }
     }
+    Partie::getPartie()->joueTour();
 }
 
 int Dames::fini(){
