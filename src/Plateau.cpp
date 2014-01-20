@@ -53,10 +53,7 @@ bool Plateau::hasPion(Pion *p){
 }
 
 bool Plateau::hasPion(int x, int y){
-    if ((*m_cases[x][y]).hasPion()) {
-        return true;
-    }
-    return false;
+  return ((*m_cases[x][y]).hasPion());
 }
 
 void Plateau::mettrePionDansCase(Pion &pion, unsigned int x, unsigned int y){
