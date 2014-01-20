@@ -50,7 +50,7 @@ vector<Case> Dames::peuventRafler(){
 }
 
 bool Dames::peutRafler(int i, int j, Pion *p){
-    Plateau *p=Partie::getPartie()->getPlateau();
+    Plateau *plateau=Partie::getPartie()->getPlateau();
     int joueur;
     if(p==noir or p==noirR){
         joueur=1;
@@ -59,7 +59,24 @@ bool Dames::peutRafler(int i, int j, Pion *p){
         joueur=0;
     }
     if(p==noir or p==blanc){
-        if(p->getCase(i-1,j-1)->getPion()->getJoueur())
+        if(plateau->getCase(i-1,j-1)->getPion()->getJoueur()!=joueur and
+           plateau->getCase(i-2,j-2)->getPion()->getJoueur()==joueur){return true;}
+        if(plateau->getCase(i-1,j+1)->getPion()->getJoueur()!=joueur and
+           plateau->getCase(i-2,j+2)->getPion()->getJoueur()==joueur){return true;}
+        if(plateau->getCase(i+1,j+1)->getPion()->getJoueur()!=joueur and
+           plateau->getCase(i+2,j+2)->getPion()->getJoueur()==joueur){return true;}
+        if(plateau->getCase(i+1,-1)->getPion()->getJoueur()!=joueur and
+           plateau->getCase(i+2,j-2)->getPion()->getJoueur()==joueur){return true;}
+    }
+    if(p==noirR or p==blancR){
+        if(plateau->getCase(i-1,j-1)->getPion()->getJoueur()!=joueur and
+           plateau->getCase(i-2,j-2)->getPion()->getJoueur()==joueur){return true;}
+        if(plateau->getCase(i-1,j+1)->getPion()->getJoueur()!=joueur and
+           plateau->getCase(i-2,j+2)->getPion()->getJoueur()==joueur){return true;}
+        if(plateau->getCase(i+1,j+1)->getPion()->getJoueur()!=joueur and
+           plateau->getCase(i+2,j+2)->getPion()->getJoueur()==joueur){return true;}
+        if(plateau->getCase(i+1,-1)->getPion()->getJoueur()!=joueur and
+           plateau->getCase(i+2,j-2)->getPion()->getJoueur()==joueur){return true;}
     }
 
 }
@@ -72,7 +89,7 @@ bool Dames::peutJouer(){
         choixPionPourRafle(peuventPrendre);
     }
     else{
-        choixPionDeplacement();
+        //choixPionDeplacement();
     }
 
 }
