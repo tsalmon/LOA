@@ -20,9 +20,10 @@ class Dames : public Jeu{
         Pion *noir;
         Pion *noirR;
         Pion *blancR;
-        vector<Case> peuventRafler();
+        vector<Case> peuventRafler(int);
         void choixPionPourRafle(vector<Case>);
-        void choixPionDeplacement();
+        void choixPionDeplacement(int);
+        void deplace(Case*);
         bool peutRafler(int,int,Pion*);
         void rafle(Case);
         int joueurAt(int,int,Plateau*);
