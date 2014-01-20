@@ -1,9 +1,5 @@
 #include "Puissance4.hpp"
 
-#define HAS_PION(i, j) (Partie::getPartie()->getPlateau()->hasPion(i, j))
-#define GET_CASE(i, j) (Partie::getPartie()->getPlateau()->getCase(i, j))
-#define GET_J() \
-  ((Partie::getPartie()->getJoueurs()->getCourrant() == 0) ? 49 : 65)
 
 Puissance4::Puissance4(){
   cout << "==== Puissance 4 ====" << endl;
@@ -22,6 +18,10 @@ Puissance4::Puissance4(){
   Partie::getPartie()->setJeu(this);
 }
 
+int Puissance4::get_j(){
+  return ((Partie::getPartie()->getJoueurs()->getCourrant() == 0) ? 49 : 65);
+}
+
 Puissance4::~Puissance4(){}
 
 int Puissance4::fini(){
@@ -34,21 +34,15 @@ bool Puissance4::peutJouer(){
 
 void Puissance4::hasP4_sens(int i, int j, int *sens, bool *stop){
   if((not stop[0]) && i > -1 && j > -1 && i<getNbLignes() && j<getNbColonnes()){
-    if(not HAS_PION(i, j)|| GET_CASE(i, j)->getPion()->getJoueur() !=GET_J()){
-      //cout << "HAUT GAUCHE STOP" << endl;
+    if(not HAS_PION(i, j)|| GET_CASE(i, j)->getPion()->getJoueur() !=get_j()){
       *stop = true;
     } else {
-      //cout << "HAUT GAUCHE SENS" << endl;
       (*sens)++;
     }
-  } else {
-    cout << "HAUT GAUCHE OUT" << endl;
-  }
+  } 
 }
 
 bool Puissance4::hasP4(int x, int y){
-  //Plateau *p = Partie::getPartie()->getPlateau();
-  //Joueur *j = Partie::getPartie()->getJoueurs();
   int sens[8];
   bool stop[8];
   for(int i = 0 ; i < 8; i++){

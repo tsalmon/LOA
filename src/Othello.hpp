@@ -9,8 +9,9 @@ class Othello : public Jeu{
   Pion *pO; 
 public:
   Othello();
+  int get_j();
   virtual ~Othello();
-  virtual void affichage();
+  void affichage();
   virtual int fini();
   virtual bool peutJouer();
   virtual void newPartie ();  

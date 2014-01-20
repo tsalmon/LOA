@@ -10,6 +10,8 @@ int main(int argc, char **argv){
   new Dames();
   } else if(argv[1][0] == '-' && argv[1][1] == 'p' && argv[1][2] == '\0'){
     new Puissance4();
+  } else if(argv[1][0] == '-' && argv[1][1] == 'o' && argv[1][2] == '\0'){
+    new Othello();
   } else {
     cout << "Jeu non reconnu" << endl;
   }

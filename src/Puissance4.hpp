@@ -9,6 +9,7 @@ protected:
 public:
   Puissance4();
   bool hasP4(int, int);
+  int get_j();
   void hasP4_sens(int i, int j, int *sens, bool *stop);
   virtual ~Puissance4();
   virtual void affichage();
