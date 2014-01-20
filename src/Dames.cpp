@@ -27,8 +27,8 @@ void Dames::newPartie(){
     for (int i=0;i<p->get_sizeX();i++){
         for (int j=0;j<p->get_sizeY();j++){
             if(j%2!=i%2){
-                if(j<4){p->mettrePionDansCase(*noir,i,j);}
-                if(j>=6){p->mettrePionDansCase(*blanc,i,j);}
+                if(i<4){p->mettrePionDansCase(*noir,i,j);}
+                if(i>=6){p->mettrePionDansCase(*blanc,i,j);}
             }
         }
     }
@@ -139,23 +139,23 @@ bool Dames::peutJouer(){
 
 void Dames::choixPionDeplacement(int joueur){
     std::cout <<
-    "Entrez le numéro de colonne de la pièce à rafler : "<<std::endl;
+    "Entrez le numero de colonne de la piece a rafler : "<<std::endl;
     unsigned int x;
     std::cin >> x;
     while(!(cin and x<10)){
         std::cout <<
-        "Erreur ! Entrez le numéro de colonne de la pièce à rafler : "<<
+        "Erreur ! Entrez le numero de colonne de la piece a rafler : "<<
         std::endl;
         std::cin.clear();
         std::cin >> x;
     }
     std::cout <<
-    "Entrez le numéro de ligne de la pièce à rafler : "<<std::endl;
+    "Entrez le numero de ligne de la piece a rafler : "<<std::endl;
     unsigned int y;
     std::cin >> y;
     while(!(cin and y<10)){
         std::cout <<
-        "Erreur ! Entrez le numéro de ligne de la pièce à rafler : "<<
+        "Erreur ! Entrez le numero de ligne de la piece a rafler : "<<
         std::endl;
         std::cin.clear();
         std::cin >> y;
@@ -225,12 +225,12 @@ void Dames::deplace(Case *c){
         }
     }
 
-    std::cout << "Choisissez la case d'arrivée : "<<std::endl;
+    std::cout << "Choisissez la case d'arrivee : "<<std::endl;
     for(unsigned int i=0;i<case_arrivee.size();i++){
         std::cout << "[" << i << "] : (" << case_arrivee[i].getX()<< ","<<
          case_arrivee[i].getY() << ")" << std::endl;
     }
-    std::cout << "Numéro du choix : ";
+    std::cout << "Numero du choix : ";
     unsigned int num;
     std::cin >> num;
     while(!(cin and num<case_arrivee.size())){
@@ -335,12 +335,12 @@ void Dames::rafle(Case c){
         }
     }
 
-    std::cout << "Choisissez la case d'arrivée : "<<std::endl;
+    std::cout << "Choisissez la case d'arrivee : "<<std::endl;
     for(unsigned int i=0;i<case_arrivee.size();i++){
         std::cout << "[" << i << "] : (" << case_arrivee[i].getX()<< ","<<
          case_arrivee[i].getY() << ")" << std::endl;
     }
-    std::cout << "Numéro du choix : ";
+    std::cout << "Numero du choix : ";
     unsigned int num;
     std::cin >> num;
     while(!(cin and num<case_arrivee.size())){
@@ -360,16 +360,16 @@ void Dames::rafle(Case c){
 
 void Dames::choixPionPourRafle(vector<Case> cases){
     std::cout << "Obligation de prendre des pieces adverses. "<<std::endl;
-    std::cout << "Choisissez la pièce avec laquelle rafler : "<<std::endl;
+    std::cout << "Choisissez la piece avec laquelle rafler : "<<std::endl;
     for(unsigned int i=0;i<cases.size();i++){
         std::cout << "[" << i << "] : (" << cases[i].getX()<< ","<<
          cases[i].getY() << ")" << std::endl;
     }
-    std::cout << "Numéro du choix : ";
+    std::cout << "Numero du choix : ";
     unsigned int num;
     std::cin >> num;
     while(!(cin and num<cases.size())){
-        std::cout << "Erreur ! Entrez le numero du pion à jouer : ";
+        std::cout << "Erreur ! Entrez le numero du pion a jouer : ";
         std::cin.clear();
         std::cin >> num;
     }
