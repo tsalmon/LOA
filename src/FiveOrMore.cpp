@@ -11,7 +11,7 @@
 char getRandomSymbole(vector<Pion*> vp){
     char c;
     while (true) {
-        c = "abcdefghijklmnopqrstuvwxyz"[random() % 26];
+        c = "abcdefghijklmnopqrstuvwxyz"[rand() % 26];
         for (int i = 0; i<vp.size(); ++i) {
             if(c == vp[i]->getSymbole())
                 continue;
@@ -119,9 +119,9 @@ bool mettreTroisPions(Plateau *p, vector<Pion*> vp){
     
     for (int i = 0; i<3; ++i) {
         it = p->m_casesLibres.begin();
-        it+= random()%ccl;
+        it+= rand()%ccl;
         
-        p->mettrePionDansCase(vp[random()%cp], (*it).getX(), (*it).getY());
+        p->mettrePionDansCase(vp[rand()%cp], (*it).getX(), (*it).getY());
         --ccl;
     }
     return true;

@@ -10,6 +10,7 @@
 #define __Projet__FiveOrMore__
 
 #include <iostream>
+#include <stdlib.h>
 
 #include "Plateau.hpp"
 #include "Partie.hpp"
