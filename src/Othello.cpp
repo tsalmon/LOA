@@ -23,6 +23,50 @@ Othello::Othello(){
 Othello::~Othello(){
 }
 
+void capture(int x, int y, int j, int d){
+  if(jeu[x][y] == '.'){
+    return ;
+  }
+  jeu[x][y] = PION_JOUEUR(j);
+  switch(d){
+  case 1: capture(x+1, y+1, j, d); break;
+  case 2: capture(x+1, y, j, d); break;
+  case 3: capture(x+1, y-1, j, d); break;;
+  case 4: capture(x, y-1, j, d); break;;
+  case 5: capture(x-1, y-1, j, d); break;
+  case 6: capture(x-1, y, j, d); break;;
+  case 7: capture(x-1, y+1, j, d); break;;
+  case 8: capture(x, y+1, j, d); break;
+  }
+}
+int trouver(int x, int y, int j, int e,int d){
+  if(!DANS_JEU(x, y) || jeu[x][y] == '.'){
+    return 3;
+  }
+  if((PION_JOUEUR(j) == jeu[x][y]) && e == 1){
+    capture(x, y, j, d);
+    return 2;
+  }
+  return 1;
+}
+int peutJouer(int x, int y, int j){
+  int d1 = 0, d2 = 0, d3 = 0, d4 = 0, d5 = 0, d6 = 0, d7 = 0, d8 = 0, k = 1;
+  do{
+    d1 = (d1 < 2) ? trouver(x-k, y-k, j, d1, 1) : d1;
+    d2 = (d2 < 2) ? trouver(x-k, y  , j, d2, 2) : d2;
+    d3 = (d3 < 2) ? trouver(x-k, y+k, j, d3, 3) : d3;
+    d4 = (d4 < 2) ? trouver(x  , y+k, j, d4, 4) : d4;
+    d5 = (d5 < 2) ? trouver(x+k, y+k, j, d5, 5) : d5;
+    d6 = (d6 < 2) ? trouver(x+k, y  , j, d6, 6) : d6;
+    d7 = (d7 < 2) ? trouver(x+k, y-k, j, d7, 7) : d7;
+    d8 = (d8 < 2) ? trouver(x , y-k, j, d8, 8) : d8;
+    k++;
+  }
+  while(d1<2 || d2<2 || d3<2 || d4<2 || d5<2 || d6<2 || d7<2 || d8<2);
+  return (d1==2 || d2==2 || d3==2 || d4==2 || d5==2 || d6==2 || d7==2 || d8==2);
+}
+
+
 int Othello::fini(){
   return 0;
 }
