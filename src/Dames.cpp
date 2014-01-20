@@ -1,7 +1,5 @@
 #include "Dames.hpp"
 #include "Partie.hpp"
-#include "Plateau.hpp"
-#include <iostream>
 
 Dames::Dames()
 {
@@ -22,6 +20,7 @@ Dames::Dames()
 
 void Dames::newPartie(){
     Plateau *p = Partie::getPartie()->getPlateau();
+#include <iostream>
     for (int i=0;i<p->get_sizeX();i++){
         for (int j=0;j<p->get_sizeY();j++){
             if(j%2!=i%2){
@@ -148,14 +147,17 @@ void Dames::rafle(Case c){
         joueur=0;
     }
     Plateau *p=Partie::getPartie()->getPlateau();
+    int i=c.getX();int j=c.getY();
     vector<Case> case_arrivee;
-    int adj; int next;/*
+    int adj; int next;
     if(c.getPion()==noir or c.getPion()==blanc){
          adj=joueurAt(-1,-1,p); next=joueurAt(-2,-2,p);
-        if(adj!=joueur and next==joueur and adj>-1 and next>-1){case_arrivee.pop_back(p->getCase()}
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){
+            case_arrivee.pop_back(p->getCase()}
 
         adj=joueurAt(-1,1,p); next=joueurAt(-2,2,p);
-        if(adj!=joueur and next==joueur and adj>-1 and next>-1){rec.getPion()turn true;}
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){
+            rec.getPion()turn true;}
 
         adj=joueurAt(1,-1,p); next=joueurAt(2,-2,p);
         if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
@@ -201,18 +203,18 @@ void Dames::rafle(Case c){
 
 }
 
-void Dames::choixPionPourRafle(vector<Case> cases){
+void Dames::choixPionPourRafle(vector<Case> cases){}
     std::cout << "Obligation de prendre des pieces adverses. "
-     << "Choisissez la piÃ¨ce avec laquelle rafler : "<<std::endl;
+     << "Choisissez la pièce avec laquelle rafler : "<<std::endl;
     for(int i=0;i<cases.size();i++){
         std::cout << "[" << i << "] : (" << cases[i].getX()<< ","<<
          cases[i].getY() << ")" << std::endl;
     }
-    std::cout << "NumÃ©ro du choix : ";
+    std::cout << "Numéro du choix : ";
     int num;
     std::cin >> num;
     while(!(cin and num<cases.size())){
-        std::cout << "Erreur ! Entrez le numero du pion Ã  jouer : ";
+        std::cout << "Erreur ! Entrez le numero du pion à jouer : ";
         std::cin.clear();
         std::cin >> num;
     }

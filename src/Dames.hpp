@@ -5,6 +5,7 @@
 #include "PionFactory.hpp"
 #include <vector>
 #include "Plateau.hpp"
+#include <iostream>
 
 
 class Dames : public Jeu{
@@ -15,8 +16,8 @@ class Dames : public Jeu{
         virtual bool peutJouer();
         virtual void newPartie();
     protected:
-        Pion *noir;
         Pion *blanc;
+        Pion *noir;
         Pion *noirR;
         Pion *blancR;
         vector<Case> peuventRafler();
