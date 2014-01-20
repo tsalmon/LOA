@@ -161,7 +161,7 @@ void Dames::choixPionDeplacement(int joueur){
     unsigned int y;
     while(!(std::cin>>y and y<10)){
         vider_buffer();
-        "Erreur ! Entrez le numero de COLONNE de la piece a deplacer : ";
+        std::cout <<"Erreur ! Entrez le numero de COLONNE de la piece a deplacer : ";
     }
     Plateau *p=Partie::getPartie()->getPlateau();
     if (p->hasPion(x,y)){
@@ -227,7 +227,10 @@ void Dames::deplace(Case *c){
             x++;y++;
         }
     }
-
+    if(case_arrivee.size()==0){
+        choixPionDeplacement(Partie::getPartie()->getJoueurs()->getCourrant());
+        return;
+    }
     std::cout << "Choisissez la case d'arrivee : "<<std::endl;
     for(unsigned int i=0;i<case_arrivee.size();i++){
         std::cout << "[" << i << "] : (" << case_arrivee[i]->getX()<< ","<<
@@ -242,11 +245,11 @@ void Dames::deplace(Case *c){
     Case *cible=case_arrivee[num];
     cible->addPion(c->getPion());
     c->retirePion();
-    if (cible->getY()==0 and cible->getPion()==noir){
+    if (cible->getX()==0 and cible->getPion()==noir){
         std::cout << "Reine !";
         cible->addPion(noirR);
     }
-    else if (cible->getY()==9 and cible->getPion()==blanc){
+    else if (cible->getX()==9 and cible->getPion()==blanc){
         std::cout << "Reine !";
         cible->addPion(blancR);
     }
@@ -354,11 +357,11 @@ void Dames::rafle(Case *c){
     Case *victime=case_a_bouffer[num];
     victime->retirePion();
     c->retirePion();
-    if (cible->getY()==0 and cible->getPion()==noir){
+    if (cible->getX()==0 and cible->getPion()==noir){
         std::cout << "Reine !";
         cible->addPion(noirR);
     }
-    else if (cible->getY()==9 and cible->getPion()==blanc){
+    else if (cible->getX()==9 and cible->getPion()==blanc){
         std::cout << "Reine !";
         cible->addPion(blancR);
     }
