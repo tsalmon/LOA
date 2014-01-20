@@ -4,10 +4,10 @@
 Puissance4::Puissance4(){
   cout << "==== Puissance 4 ====" << endl;
   
-  *pO = PionFactory::getInstance().getPion("O");
+  pO = PionFactory::getInstance().getPion("O");
   pO->setJoueur(0);
   pO->setSymbole('O');
-  *pX = PionFactory::getInstance().getPion("X");
+  pX = PionFactory::getInstance().getPion("X");
   pX->setSymbole('X');
   pX->setJoueur(1);
   

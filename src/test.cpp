@@ -1,4 +1,4 @@
-/*#include "Partie.hpp"
+#include "Partie.hpp"
 #include "Puissance4.hpp"
 #include "Dames.hpp"
 #include "Othello.hpp"
@@ -19,4 +19,4 @@ int main(int argc, char **argv){
     cout << "Jeu non reconnu" << endl;
   }
   return 0;
-}*/
+}
