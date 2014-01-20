@@ -94,9 +94,9 @@
 			isa = PBXGroup;
 			children = (
 				F76E4DC2188B4EE3008F9D82 /* main.cpp */,
-				F7915844188D8A1F005B281B /* Othello.cpp */,
 				F791584A188D8B1E005B281B /* FiveOrMore.cpp */,
 				F791584B188D8B1E005B281B /* FiveOrMore.h */,
+				F7915844188D8A1F005B281B /* Othello.cpp */,
 				F7915845188D8A1F005B281B /* Othello.hpp */,
 				F76E4DCB188B4F09008F9D82 /* Case.cpp */,
 				F76E4DCC188B4F09008F9D82 /* Case.hpp */,

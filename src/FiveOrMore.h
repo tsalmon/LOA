@@ -10,5 +10,9 @@
 #define __Projet__FiveOrMore__
 
 #include <iostream>
+#include "Jeu.hpp"
+class FiveOrMore:public Jeu{
+    
+};
 
 #endif /* defined(__Projet__FiveOrMore__) */
