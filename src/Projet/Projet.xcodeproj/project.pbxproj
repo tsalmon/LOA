@@ -20,6 +20,7 @@
 		F7915846188D8A1F005B281B /* Othello.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7915844188D8A1F005B281B /* Othello.cpp */; };
 		F7915849188D8A2E005B281B /* Dames.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7915847188D8A2E005B281B /* Dames.cpp */; };
 		F791584C188D8B1E005B281B /* FiveOrMore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F791584A188D8B1E005B281B /* FiveOrMore.cpp */; };
+		F791584E188DA55B005B281B /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F791584D188DA55B005B281B /* test.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -61,6 +62,7 @@
 		F7915848188D8A2E005B281B /* Dames.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Dames.hpp; path = ../../Dames.hpp; sourceTree = "<group>"; };
 		F791584A188D8B1E005B281B /* FiveOrMore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FiveOrMore.cpp; path = ../../FiveOrMore.cpp; sourceTree = "<group>"; };
 		F791584B188D8B1E005B281B /* FiveOrMore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FiveOrMore.h; path = ../../FiveOrMore.h; sourceTree = "<group>"; };
+		F791584D188DA55B005B281B /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test.cpp; path = ../../test.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				F76E4DDE188B4F37008F9D82 /* Plateau.hpp */,
 				F76E4DDF188B4F37008F9D82 /* Puissance4.cpp */,
 				F76E4DE0188B4F37008F9D82 /* Puissance4.hpp */,
+				F791584D188DA55B005B281B /* test.cpp */,
 				F76E4DC4188B4EE3008F9D82 /* Projet.1 */,
 			);
 			path = Projet;
@@ -181,6 +184,7 @@
 				F76E4DC3188B4EE3008F9D82 /* main.cpp in Sources */,
 				F76E4DDC188B4F2C008F9D82 /* PionFactory.cpp in Sources */,
 				F76E4DDB188B4F2C008F9D82 /* Pion.cpp in Sources */,
+				F791584E188DA55B005B281B /* test.cpp in Sources */,
 				F76E4DDA188B4F2C008F9D82 /* Partie.cpp in Sources */,
 				F76E4DCD188B4F09008F9D82 /* Case.cpp in Sources */,
 				F7915846188D8A1F005B281B /* Othello.cpp in Sources */,
