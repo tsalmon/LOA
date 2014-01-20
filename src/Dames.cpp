@@ -195,11 +195,12 @@ void Dames::deplace(Case *c){
                  case_arrivee.push_back(*p->getCase(i+1,j-1));
             }
     }else if(c->getPion()==blanc){
+            std::cout<<i<<" "<<j<<std::endl;
             if(!p->hasPion(i-1,j+1)){
-                 case_arrivee.push_back(*p->getCase(i-1,j+1));
+                 case_arrivee.push_back(*p->getCase(i-1,j+1)); std::cout<<"1";
             }
             if(!p->hasPion(i+1,j+1)){
-                 case_arrivee.push_back(*p->getCase(i+1,j+1));
+                 case_arrivee.push_back(*p->getCase(i+1,j+1));std::cout<<"2";
             }
     }
     else if(c->getPion()==noirR or c->getPion()==blancR){

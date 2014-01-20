@@ -81,9 +81,9 @@ void Plateau::effacerPionDeCase(unsigned int x, unsigned y){
 
 ostream &operator<<(ostream &os,const Plateau &b) {
 
-    for(int i = 0; i<b.m_nbLignes; ++i){
+    for(int i = 0; i<b.m_nbColonnes; ++i){
         os<<i<<" | ";
-        for (int j = 0; j<b.m_nbColonnes; ++j) {
+        for (int j = 0; j<b.m_nbLignes; ++j) {
             if(!b.m_cases[i][j].getPion())
             {
                 os << "_ ";
