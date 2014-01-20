@@ -1,6 +1,7 @@
 #include "Partie.hpp"
 #include "Puissance4.hpp"
 #include "Dames.hpp"
+#include "Othello.hpp"
 int main(int argc, char **argv){
   if(argc != 2){
     return 0;

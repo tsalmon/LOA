@@ -107,6 +107,8 @@ void Puissance4::newPartie (){
       p->mettrePionDansCase(*pX, i, choix_pos);
     }
   }while(not hasP4(i, choix_pos));
+  affichage();
+  cout << "Le joueur " << j->getCourrant() << "a gagné "<<  endl; 
 }
 
 void Puissance4::affichage(){
