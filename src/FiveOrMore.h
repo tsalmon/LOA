@@ -18,22 +18,22 @@ class FiveOrMore:public Jeu{
 private:
     unsigned int nbPions;
     unsigned int points;
+    vector<Pion*> vp;
+
     virtual int getNbLignes();
     virtual int getNbJoueur();
     virtual int getNbColonnes();
     virtual bool peutJouer ();
+    virtual void newPartie ();
     virtual int fini ();
     
-    vector<Pion*> vp;
-    
-    int **getHorizontalMask(/*Plateau *p,*/ int nbLignes, int nbColonnes);
-    int **getVerticalMask(/*Plateau *p,*/ int nbLignes, int nbColonnes);
-    int **getDiagonalMask1(/*Plateau *p,*/ int nbLignes, int nbColonnes);
-    int **getDiagonalMask2(/*Plateau *p,*/ int nbLignes, int nbColonnes);
-    void checkFive(/*Plateau *p*/);
+    void checkFive();
+    int **getHorizontalMask( int nbLignes, int nbColonnes);
+    int **getVerticalMask(int nbLignes, int nbColonnes);
+    int **getDiagonalMask1(int nbLignes, int nbColonnes);
+    int **getDiagonalMask2( int nbLignes, int nbColonnes);
 public:
     FiveOrMore(unsigned int dimension, unsigned int nbPions);
-    virtual void newPartie ();
 };
 
 #endif /* defined(__Projet__FiveOrMore__) */

@@ -11,7 +11,7 @@
 char getRandomSymbole(vector<Pion*> vp){
     char c;
     while (true) {
-        c = "abcdefghijklmnopqrstuvwxyz"[arc4random() % 26];
+        c = "abcdefghijklmnopqrstuvwxyz"[random() % 26];
         for (int i = 0; i<vp.size(); ++i) {
             if(c == vp[i]->getSymbole())
                 continue;
@@ -119,9 +119,9 @@ bool mettreTroisPions(Plateau *p, vector<Pion*> vp){
     
     for (int i = 0; i<3; ++i) {
         it = p->m_casesLibres.begin();
-        it+= arc4random()%ccl;
+        it+= random()%ccl;
         
-        p->mettrePionDansCase(vp[arc4random()%cp], (*it).getX(), (*it).getY());
+        p->mettrePionDansCase(vp[random()%cp], (*it).getX(), (*it).getY());
         --ccl;
     }
     return true;
@@ -387,14 +387,14 @@ void applyMask(Plateau *p, int **mask,int nbLignes, int nbColonnes){
 }
 
 
-void FiveOrMore::checkFive(/*Plateau *p*/){
+void FiveOrMore::checkFive(){
     Plateau *p = Partie::getPartie()->getPlateau();
     int nbLignes = p->get_sizeX();
     int nbColonnes = p->get_sizeY();
-    int **hm = this->getHorizontalMask(/*p,*/ nbLignes, nbColonnes);
-    int **vm = this->getVerticalMask(/*p,*/ nbLignes, nbColonnes);
-    int **dm1 = this->getDiagonalMask1(/*p,*/ nbLignes, nbColonnes);
-    int **dm2 = this->getDiagonalMask2(/*p,*/ nbLignes, nbColonnes);
+    int **hm = this->getHorizontalMask(nbLignes, nbColonnes);
+    int **vm = this->getVerticalMask(nbLignes, nbColonnes);
+    int **dm1 = this->getDiagonalMask1(nbLignes, nbColonnes);
+    int **dm2 = this->getDiagonalMask2(nbLignes, nbColonnes);
     int **fm1 = fusionMatrix(hm, vm, nbLignes, nbColonnes);
     int **fm2 = fusionMatrix(dm1, fm1, nbLignes, nbColonnes);
     int **fm3 = fusionMatrix(dm2, fm2, nbLignes, nbColonnes);
