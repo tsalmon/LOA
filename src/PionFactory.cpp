@@ -11,11 +11,6 @@ PionFactory &PionFactory::getInstance(){
 
 Pion PionFactory::getPion(string nom)
 {
-    /*
-    for(std::vector<Pion>::iterator it = pions.begin(); it != pions.end(); ++it) {
-        if((*it).nom == nom)
-            return &(*it);
-    }*/
     for (unsigned int i = 0; i<pions.size(); ++i) {
         if(pions[i].nom == nom)
             return pions[i];

@@ -7,9 +7,8 @@
 //
 
 #include <iostream>
-#include "Plateau.hpp"
-#include "PionFactory.hpp"
-
+#include "FiveOrMore.h"
+/*
 unsigned int points;
 
 
@@ -415,11 +414,14 @@ char getRandomSymbole(vector<Pion*> vp){
         break;
     }
     return c;
-}
+}*/
 
 
 int main(int argc, const char * argv[])
 {
+    FiveOrMore j = FiveOrMore(10, 3);
+    j.newPartie();
+    /*
     unsigned int pions = 3;
     unsigned int dimension = 10;
     points = 0;
@@ -478,6 +480,6 @@ int main(int argc, const char * argv[])
         }
     }
     cout<< "Game over!" <<endl;
-    cout<< "Total points: "<<points<<endl;
+    cout<< "Total points: "<<points<<endl;*/
 }
 
