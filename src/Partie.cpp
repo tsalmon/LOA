@@ -1,6 +1,7 @@
 #include "Partie.hpp"
 
 int Partie::joueTour (){
+    affiche();
     jeu->peutJouer();
     joueurs->next();
     int fin=jeu->fini();

@@ -16,10 +16,10 @@ Dames::Dames()
     noirR = factory.getPion("noirR");
     noirR->setSymbole('N');
     noirR->setJoueur(1);
-    Partie::getPartie()->setJeu(this);
     noir->setSymbole('n');
     noir->setJoueur(1);
     blanc->setJoueur(0);
+    Partie::getPartie()->setJeu(this);
 }
 
 void Dames::newPartie(){
