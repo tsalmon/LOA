@@ -21,8 +21,8 @@ void Dames::newPartie(){
     for (int i=0;i<p->get_sizeX();i++){
         for (int j=0;j<p->get_sizeY();j++){
             if(j%2!=i%2){
-	      if(j<4){cout << "4" << endl;p->mettrePionDansCase(*noir,i,j);}
-                if(j>=6){cout << "6" << endl;p->mettrePionDansCase(*blanc,i,j);}
+	      if(j<4){p->mettrePionDansCase(*noir,i,j);}
+                if(j>=6){p->mettrePionDansCase(*blanc,i,j);}
 	    }
         }
     }
