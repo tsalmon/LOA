@@ -23,6 +23,7 @@ char Pion::getSymbole() const{
 }
 
 ostream &operator<<(ostream &os,const Pion &p) {
+
     os << p.getSymbole();
     return os;
 }

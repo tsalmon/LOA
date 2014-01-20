@@ -3,27 +3,40 @@
 #include "Partie.hpp"
 
 Plateau::Plateau(int x, int y){
-  unsigned a = 0, b = 0;
+    /*   this->colonnes = c;
+     this->rangs = r;
+     for(int i = 0; i<r; ++i){
+     vector<Case> cell;
+     this->matrix.push_back(cell);
+     for (int j = 0; j<c; ++j) {
+     this->matrix[i].push_back(Case(i,j));
+     }
+     } */
+  //unsigned a = 0, b = 0;
   m_nbColonnes=x;
   m_nbLignes=y;
-  m_cases = new Case**[x];
-  for (int i=0;i< m_nbColonnes; i++){
-    m_cases[i] = new Case*[y];
-    for(int j=0;j< m_nbLignes; j++){
-      m_cases[i][j] = new Case(a++, b++);
+  //m_cases = new Case**[x];
+  for (int i=0;i< m_nbLignes; i++){
+    //m_cases[i] = new Case*[y];
+      vector<Case> cell;
+      this->m_cases.push_back(cell);
+    for(int j=0;j< m_nbColonnes; j++){
+        this->m_cases[i].push_back(Case(i, j));
+        //m_cases[i][j] = new Case(i, j);
+        m_casesLibres.push_back(this->m_cases[i][j]);
     }
   }
 }
 
 Case* Plateau::getCase(int x,int y){
-  return m_cases[x][y];
+  return &m_cases[x][y];
 }
 
 bool Plateau::isEmpty(){
   for (int i=0;i<m_nbColonnes;i++){
     for(int j=0;j<m_nbLignes;j++){
-      if((*m_cases[i][j]).getPion()!=NULL){
-	return false;
+      if((m_cases[i][j]).getPion()!=NULL){
+          return false;
       }
     }
   }
@@ -33,18 +46,18 @@ bool Plateau::isEmpty(){
 bool Plateau::isFull(){
   for (int i=0;i<m_nbColonnes;i++){
     for(int j=0;j<m_nbLignes;j++){
-      if((*m_cases[i][j]).getPion()==NULL){
-	return true;
+      if((m_cases[i][j]).getPion()==NULL){
+          return false;
       }
     }
   }
-  return false;
+  return true;
 }
 
 bool Plateau::hasPion(Pion *p){
   for (int i=0;i<m_nbColonnes;i++){
     for(int j=0;j<m_nbLignes;j++){
-      if((*m_cases[i][j]).getPion()==p){
+      if((m_cases[i][j]).getPion()==p){
 	return true;
       }
     }
@@ -53,33 +66,43 @@ bool Plateau::hasPion(Pion *p){
 }
 
 bool Plateau::hasPion(int x, int y){
-    if ((*m_cases[x][y]).hasPion()) {
+    if ((m_cases[x][y]).hasPion()) {
         return true;
     }
     return false;
 }
 
-void Plateau::mettrePionDansCase(Pion &pion, unsigned int x, unsigned int y){
-    this->m_cases[x][y]->addPion(pion);
+void Plateau::mettrePionDansCase(Pion *pion, unsigned int x, unsigned int y){
+    this->m_cases[x][y].addPion(pion);
+    for(std::vector<Case>::iterator it = m_casesLibres.begin(); it != m_casesLibres.end(); ++it) {
+        if((*it).getX() == x && (*it).getY() == y){
+            m_casesLibres.erase(it);
+            break;
+        }
+    }
 }
 
 Pion *Plateau::pionDansCase(unsigned int x, unsigned int y){
-    return this->m_cases[x][y]->getPion();
+    return this->m_cases[x][y].getPion();
 }
 
 void Plateau::effacerPionDeCase(unsigned int x, unsigned y){
-    this->m_cases[x][y]->retirePion();
+    this->m_cases[x][y].retirePion();
+    this->m_casesLibres.push_back(m_cases[x][y]);
 }
 
 ostream &operator<<(ostream &os,const Plateau &b) {
 
     for(int i = 0; i<b.m_nbLignes; ++i){
         for (int j = 0; j<b.m_nbColonnes; ++j) {
-            if(!b.m_cases[i][j]->getPion())
+            if(!b.m_cases[i][j].getPion())
             {
                 os << "☐ ";
             } else {
-                os << *(b.m_cases[i][j]->getPion())<<" ";
+                if(b.m_cases[i][j].getPion()->getSymbole() == ''){
+                    int k = 0;
+                }
+                os << *(b.m_cases[i][j].getPion())<<" ";
             }
         }
         os<<endl;;
@@ -93,8 +116,8 @@ int Plateau::morePions(){
   int joueurs[nbjoueurs];
   for(int i = 0 ; i < m_nbColonnes; i++){
     for(int j = 0 ; j < m_nbLignes; j++){
-      if (m_cases[i][j]!=NULL){
-        joueurs[m_cases[i][j]->getPion()->getJoueur()]++;
+      if (m_cases[i][j].hasPion()){
+        joueurs[m_cases[i][j].getPion()->getJoueur()]++;
       }
     }
   }

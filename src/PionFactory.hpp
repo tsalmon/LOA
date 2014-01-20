@@ -15,6 +15,6 @@ private:
     vector<Pion> pions;
 public:
     static PionFactory &getInstance();
-    Pion *getPion(string name);
+    Pion getPion(string name);
 };
 #endif /* defined(__Projet__CheckerFactory__) */
