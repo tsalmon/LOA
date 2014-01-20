@@ -1,12 +1,7 @@
 #include "Partie.hpp"
 
-
-Partie::Partie(){}
-Partie::Partie(Partie &l){}
-void Partie::operator=(Partie &l){}
-Partie::~Partie(){};
-
 int Partie::joueTour (){
+    affiche();
     jeu->peutJouer();
     joueurs->next();
     int fin=jeu->fini();
@@ -18,9 +13,10 @@ int Partie::joueTour (){
 }
 
 void Partie::setJeu(Jeu *j){
-    this->jeu = j;
-    plateau = new Plateau(jeu->getNbColonnes(), jeu->getNbLignes());
-    joueurs = new Joueur(j->getNbJoueur());
+  this->jeu = j;
+  plateau = new Plateau(jeu->getNbLignes(), jeu->getNbColonnes());
+  joueurs = new Joueur(j->getNbJoueur());
+  jeu->newPartie();
 }
 
 Partie *Partie::getPartie(){
@@ -28,8 +24,8 @@ Partie *Partie::getPartie(){
     return &instance;
 }
 
-Plateau &Partie::getPlateau(){
-  return *plateau;
+Plateau *Partie::getPlateau(){
+  return plateau;
 }
 
 Joueur *Partie::getJoueurs(){
@@ -41,5 +37,5 @@ int Partie::getNbJoueur(){
 }
 
 void Partie::affiche(){
-  
+    std::cout<<*plateau<<std::endl;
 }

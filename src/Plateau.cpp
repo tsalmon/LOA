@@ -80,7 +80,9 @@ void Plateau::mettrePionDansCase(Pion *pion, unsigned int x, unsigned int y){
             break;
         }
     }
+  //return ((*m_cases[x][y]).hasPion());
 }
+
 
 Pion *Plateau::pionDansCase(unsigned int x, unsigned int y){
     return this->m_cases[x][y].getPion();
@@ -94,26 +96,37 @@ void Plateau::effacerPionDeCase(unsigned int x, unsigned y){
 ostream &operator<<(ostream &os,const Plateau &b) {
 
     for(int i = 0; i<b.m_nbLignes; ++i){
+        os<<i<<" | ";
         for (int j = 0; j<b.m_nbColonnes; ++j) {
             if(!b.m_cases[i][j].getPion())
             {
-                os << "☐ ";
+                os << "_ ";
             } else {
-                if(b.m_cases[i][j].getPion()->getSymbole() == ''){
+                /*if(b.m_cases[i][j].getPion()->getSymbole() == ''){
                     int k = 0;
-                }
+                }*/
                 os << *(b.m_cases[i][j].getPion())<<" ";
             }
         }
         os<<endl;;
     }
-    return os;
+    for (int j = 0; j<b.m_nbColonnes+2; ++j) {
+        os << "__";
+    }
+    os<<endl<<"    ";
+    for (int j = 0; j<b.m_nbColonnes; ++j) {
+        os << j<<" ";
+    }
+    return os<<endl;
 }
-
 
 int Plateau::morePions(){
   int nbjoueurs=Partie::getPartie()->getNbJoueur();
-  int joueurs[nbjoueurs];
+  int *joueurs = new int[nbjoueurs];
+
+  for (int k=0; k<nbjoueurs;k++){
+        joueurs[k]=0;}
+
   for(int i = 0 ; i < m_nbColonnes; i++){
     for(int j = 0 ; j < m_nbLignes; j++){
       if (m_cases[i][j].hasPion()){

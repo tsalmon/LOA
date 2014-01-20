@@ -1,13 +1,12 @@
 #include "Pion.hpp"
 
 
-Pion::Pion(string nom, char symbole){
+Pion::Pion(string nom){
     this->nom = nom;
-    this->symbole = symbole;
 }
 
 void Pion::setJoueur(int j){
-    this->joueur = j;
+  joueur = j;
 }
 
 int Pion::getJoueur(){
@@ -15,11 +14,11 @@ int Pion::getJoueur(){
 }
 
 void Pion::setSymbole(char s){
-    this->symbole = s;
+  symbole = s;
 }
 
 char Pion::getSymbole() const{
-    return this->symbole;
+  return symbole;
 }
 
 ostream &operator<<(ostream &os,const Pion &p) {

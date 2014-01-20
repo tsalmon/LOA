@@ -20,9 +20,7 @@ Pion PionFactory::getPion(string nom)
         if(pions[i].nom == nom)
             return pions[i];
     }
-    
     Pion *ch = new Pion(nom);
     pions.push_back(*ch);
     return pions[pions.size()-1];
 }
-
