@@ -60,7 +60,7 @@ bool Plateau::hasPion(int x, int y){
 }
 
 void Plateau::mettrePionDansCase(Pion &pion, unsigned int x, unsigned int y){
-    this->m_cases[x][y]->addPion(pion);
+  this->m_cases[x][y]->addPion(pion);
 }
 
 Pion *Plateau::pionDansCase(unsigned int x, unsigned int y){
