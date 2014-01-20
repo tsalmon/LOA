@@ -7,13 +7,13 @@ Dames::Dames()
     nbLignes=10;
     nbColonnes=10;
     PionFactory &factory=PionFactory::getInstance();
-    *blanc = factory.getPion("blanc");
+    blanc = factory.getPion("blanc");
     blanc->setSymbole('b');
-    *noir = factory.getPion("noir");
-    *blancR = factory.getPion("blancR");
+    noir = factory.getPion("noir");
+    blancR = factory.getPion("blancR");
     blancR->setSymbole('B');
     blancR->setJoueur(0);
-    *noirR = factory.getPion("noirR");
+    noirR = factory.getPion("noirR");
     noirR->setSymbole('N');
     noirR->setJoueur(1);
     noir->setSymbole('n');
@@ -139,23 +139,23 @@ bool Dames::peutJouer(){
 
 void Dames::choixPionDeplacement(int joueur){
     std::cout <<
-    "Entrez le numero de colonne de la piece a rafler : "<<std::endl;
+    "Entrez le numero de colonne de la piece a deplacer : "<<std::endl;
     unsigned int x;
     std::cin >> x;
     while(!(cin and x<10)){
         std::cout <<
-        "Erreur ! Entrez le numero de colonne de la piece a rafler : "<<
+        "Erreur ! Entrez le numero de colonne de la piece a deplacer : "<<
         std::endl;
         std::cin.clear();
         std::cin >> x;
     }
     std::cout <<
-    "Entrez le numero de ligne de la piece a rafler : "<<std::endl;
+    "Entrez le numero de ligne de la piece a deplacer : "<<std::endl;
     unsigned int y;
     std::cin >> y;
     while(!(cin and y<10)){
         std::cout <<
-        "Erreur ! Entrez le numero de ligne de la piece a rafler : "<<
+        "Erreur ! Entrez le numero de ligne de la piece a deplacer : "<<
         std::endl;
         std::cin.clear();
         std::cin >> y;
