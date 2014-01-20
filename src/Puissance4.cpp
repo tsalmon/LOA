@@ -1,9 +1,5 @@
 #include "Puissance4.hpp"
 
-#define GET_CURRENT_PLAYER() (->getCourrant())
-#define NEXT_PLAYER() (Partie::getPartie()->getJoueurs()->next())
-
-
 Puissance4::Puissance4(){
   cout << "==== Puissance 4 ====" << endl;
   PionFactory &factory=PionFactory::getInstance();  
@@ -41,14 +37,19 @@ void Puissance4::newPartie (){
   do{
     int i=0;
     j->next();
+    cout << j->getCourrant() << endl;
     affichage();
     do{
       cout << "choissisez une position : " << endl;
       cin >> choix_pos;
-    }while(choix_pos < 0 || choix_pos >= nbLignes);
+    }while(choix_pos < 0 || choix_pos > nbLignes);
     for(;i < nbLignes && not p->hasPion(i, choix_pos); i++){}
     if(not(i == 0 && p->hasPion(i, choix_pos))){
-      p->mettrePionDansCase(*pX, (i==0)? 0 : i-1, choix_pos);
+      if(j->getCourrant() == 0){
+      p->mettrePionDansCase(*pO, (i==0)? 0 : i-1, choix_pos);
+      } else {
+	p->mettrePionDansCase(*pX, (i==0)? 0 : i-1, choix_pos);
+      }
     }
   }while(not hasP4());
 }
@@ -59,7 +60,7 @@ void Puissance4::affichage(){
   for(int i = 0; i < nbLignes; i++){
     for(int j = 0; j< nbColonnes ; j++){
       if(p->hasPion(i, j)){
-	cout << "x" << " ";
+	cout << p->getCase(i, j)->getPion()->getSymbole() << " ";
       } else {
 	cout << ". ";
       }
