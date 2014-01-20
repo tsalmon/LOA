@@ -22,6 +22,7 @@ class Dames : public Jeu{
         vector<Case> peuventRafler();
         void choixPionPourRafle(vector<Case>);
         void choixPionDeplacement();
+        bool peutRafler(int,int,Pion*);
         void rafle(Case);
 
     private:

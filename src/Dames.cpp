@@ -21,9 +21,9 @@ void Dames::newPartie(){
     for (int i=0;i<p->get_sizeX();i++){
         for (int j=0;j<p->get_sizeY();j++){
             if(j%2!=i%2){
-	      if(j<4){cout << "4" << endl;p->mettrePionDansCase(*noir,i,j);}
-                if(j>=6){cout << "6" << endl;p->mettrePionDansCase(*blanc,i,j);}
-	    }
+                if(j<4){p->mettrePionDansCase(*noir,i,j);}
+                if(j>=6){p->mettrePionDansCase(*blanc,i,j);}
+            }
         }
     }
 }
@@ -41,11 +41,29 @@ vector<Case> Dames::peuventRafler(){
         for (int j=0;j<p->get_sizeY();j++){
             Pion *pion =p->getCase(i,j)->getPion();
             if(pion!=NULL){
+                if (peutRafler(i,j,pion)){
 
+                }
             }
         }
     }
 }
+
+bool Dames::peutRafler(int i, int j, Pion *p){
+    Plateau *p=Partie::getPartie()->getPlateau();
+    int joueur;
+    if(p==noir or p==noirR){
+        joueur=1;
+    }
+    else{
+        joueur=0;
+    }
+    if(p==noir or p==blanc){
+        if(p->getCase(i-1,j-1)->getPion()->getJoueur())
+    }
+
+}
+
 
 bool Dames::peutJouer(){
     int joueur=Partie::getPartie()->getJoueurs()->getCourrant();
@@ -54,7 +72,7 @@ bool Dames::peutJouer(){
         choixPionPourRafle(peuventPrendre);
     }
     else{
-      //choixPionDeplacement();
+        choixPionDeplacement();
     }
 
 }
