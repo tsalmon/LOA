@@ -1,8 +1,9 @@
 #include "Othello.hpp"
 
+#define GET_PLATEAU() (Partie::getPartie()->getPlateau())
 
 int Othello::get_j(){
-    return ((Partie::getPartie()->getJoueurs()->getCourrant() == 0) ? 0 : 81);
+  return (Partie::getPartie()->getJoueurs()->getCourrant());
 }
 
 Othello::Othello(){
@@ -29,20 +30,21 @@ int Othello::fini(){
 }
 
 void Othello::capture(int x, int y, int d){
-  if(get_j() == GET_CASE(x, y)->getPion()->getJoueur()){
+  switch(d){
+  case 1: x++; y++ ; break;
+  case 2: x++; break;
+  case 3: x++; y--; break;;
+  case 4: y--; break;;
+  case 5: x--; y--; break;
+  case 6: x--; break;;
+  case 7: x--; y++; break;;
+  case 8: y++; break;
+  }
+  if(GET_CASE(x, y)->getPion() == NULL){ // piont de depart
     return ;
   }
-  GET_CASE(x, y)->getPion()->setJoueur(Partie::getPartie()->getJoueurs()->getCourrant());
-  switch(d){
-  case 1: capture(x+1, y+1, d); break;
-  case 2: capture(x+1, y, d); break;
-  case 3: capture(x+1, y-1, d); break;;
-  case 4: capture(x, y-1, d); break;;
-  case 5: capture(x-1, y-1, d); break;
-  case 6: capture(x-1, y, d); break;;
-  case 7: capture(x-1, y+1, d); break;;
-  case 8: capture(x, y+1,  d); break;
-  }
+  GET_PLATEAU()->mettrePionDansCase((get_j() == 0)? pO : pX, x, y);
+  capture(x, y, d);
 }
 
 /*call by: coupValide: 1 = pion ennemi, 2 = pion joueur, 3 = vide*/
@@ -92,11 +94,11 @@ void Othello::newPartie(){
     cout << "Joueur " << j->getCourrant() << endl;
     affichage();
     do{
-      cout << "choissisez une position : " << endl;
+      cout << "choisissez une position : " << endl;
       cin >> choix_x >> choix_y;
     }while(choix_x < 0 || choix_y < 0 || choix_x > nbLignes || 
 	   choix_y > nbColonnes || not coupValide(choix_x, choix_y));
-    cout << p->isFull() << endl;
+    GET_PLATEAU()->mettrePionDansCase((get_j() == 0)? pO : pX, choix_x, choix_y);
   }while(not p->isFull());
 }
 
@@ -108,7 +110,7 @@ void Othello::affichage(){
       if(p->hasPion(i, j)){
 	switch(p->getCase(i, j)->getPion()->getJoueur()){                       
 	case 0: cout << "O "; break;
-	case 81: cout << "X "; break;
+	case 1: cout << "X "; break;
 	}
       } else {
 	cout << ". ";
