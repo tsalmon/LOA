@@ -6,6 +6,8 @@
 #include <vector>
 #include "Plateau.hpp"
 #include <iostream>
+#include <sstream>
+#include <limits>
 
 
 class Dames : public Jeu{
@@ -20,13 +22,14 @@ class Dames : public Jeu{
         Pion *noir;
         Pion *noirR;
         Pion *blancR;
-        vector<Case> peuventRafler(int);
-        void choixPionPourRafle(vector<Case>);
+        vector<Case*> peuventRafler(int);
+        void choixPionPourRafle(vector<Case*>);
         void choixPionDeplacement(int);
         void deplace(Case*);
         bool peutRafler(int,int,Pion*);
-        void rafle(Case);
+        void rafle(Case*);
         int joueurAt(int,int,Plateau*);
+        void vider_buffer();
     private:
 };
 

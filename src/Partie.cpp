@@ -3,7 +3,6 @@
 int Partie::joueTour (){
     affiche();
     jeu->peutJouer();
-    joueurs->next();
     int fin=jeu->fini();
     if (fin>=0){
         return fin;

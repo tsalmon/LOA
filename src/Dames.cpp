@@ -42,15 +42,15 @@ int Dames::fini(){
     else{return -1;}
 }
 
-vector<Case> Dames::peuventRafler(int joueur){
+vector<Case*> Dames::peuventRafler(int joueur){
     Plateau *p=Partie::getPartie()->getPlateau();
-    vector<Case> result;
+    vector<Case*> result;
     for (int i=0;i<p->get_sizeX();i++){
         for (int j=0;j<p->get_sizeY();j++){
             if(p->hasPion(i,j)){
                 Pion *pion =p->getCase(i,j)->getPion();
                 if (peutRafler(i,j,pion) and pion->getJoueur()==joueur){
-                    result.push_back(*p->getCase(i,j));
+                    result.push_back(p->getCase(i,j));
                 }
             }
         }
@@ -126,39 +126,42 @@ int Dames::joueurAt(int x,int y, Plateau* p){
 
 bool Dames::peutJouer(){
     int joueur=Partie::getPartie()->getJoueurs()->getCourrant();
-    std::cout <<"Au tour du joueur "<< joueur<<std::endl;
-    vector<Case> peuventPrendre= peuventRafler(joueur);
+    std::cout <<"Au tour du joueur "<< joueur<<std::endl<<std::endl;
+    vector<Case*> peuventPrendre= peuventRafler(joueur);
     if (peuventPrendre.size()!=0){
         choixPionPourRafle(peuventPrendre);
     }
     else{
         choixPionDeplacement(joueur);
     }
+    std::cout <<std::endl<<"------------------------------"
+    << std::endl<<std::endl;
     return true;
+}
+
+void Dames::vider_buffer()
+{
+    cin.clear();
+    cin.seekg(0, ios::end);
+    if(!cin.fail())
+    {cin.ignore(numeric_limits<streamsize>::max());}
+    else{cin.clear();}
 }
 
 void Dames::choixPionDeplacement(int joueur){
     std::cout <<
-    "Entrez le numero de colonne de la piece a deplacer : "<<std::endl;
+    "Entrez le numero de ligne de la piece a deplacer : ";
     unsigned int x;
-    std::cin >> x;
-    while(!(cin and x<10)){
-        std::cout <<
-        "Erreur ! Entrez le numero de colonne de la piece a deplacer : "<<
-        std::endl;
-        std::cin.clear();
-        std::cin >> x;
+    while(!(std::cin>>x and x<10)){
+        vider_buffer();
+        std::cout <<"Erreur ! Entrez le numero de LIGNE de la piece a deplacer : ";
     }
     std::cout <<
-    "Entrez le numero de ligne de la piece a deplacer : "<<std::endl;
+    "Entrez le numero de colonne de la piece a deplacer : ";
     unsigned int y;
-    std::cin >> y;
-    while(!(cin and y<10)){
-        std::cout <<
-        "Erreur ! Entrez le numero de ligne de la piece a deplacer : "<<
-        std::endl;
-        std::cin.clear();
-        std::cin >> y;
+    while(!(std::cin>>y and y<10)){
+        vider_buffer();
+        "Erreur ! Entrez le numero de COLONNE de la piece a deplacer : ";
     }
     Plateau *p=Partie::getPartie()->getPlateau();
     if (p->hasPion(x,y)){
@@ -186,99 +189,98 @@ void Dames::choixPionDeplacement(int joueur){
 void Dames::deplace(Case *c){
     Plateau *p=Partie::getPartie()->getPlateau();
     int i=c->getX();int j=c->getY();
-    vector<Case> case_arrivee;
+    vector<Case*> case_arrivee;
     if(c->getPion()==noir){
-            if(!p->hasPion(i-1,j-1)){
-                 case_arrivee.push_back(*p->getCase(i-1,j-1));
+            if(joueurAt(i+1,j-1,p)==-1){
+                 case_arrivee.push_back(p->getCase(i+1,j-1));
             }
-            if(!p->hasPion(i+1,j-1)){
-                 case_arrivee.push_back(*p->getCase(i+1,j-1));
+            if(joueurAt(i+1,j+1,p)==-1){
+                 case_arrivee.push_back(p->getCase(i+1,j+1));
             }
     }else if(c->getPion()==blanc){
-            std::cout<<i<<" "<<j<<std::endl;
-            if(!p->hasPion(i-1,j+1)){
-                 case_arrivee.push_back(*p->getCase(i-1,j+1)); std::cout<<"1";
+            if(joueurAt(i-1,j-1,p)==-1){
+                 case_arrivee.push_back(p->getCase(i-1,j-1)); std::cout<<"1";
             }
-            if(!p->hasPion(i+1,j+1)){
-                 case_arrivee.push_back(*p->getCase(i+1,j+1));std::cout<<"2";
+            if(joueurAt(i-1,j+1,p)==-1){
+                 case_arrivee.push_back(p->getCase(i-1,j+1));std::cout<<"2";
             }
     }
     else if(c->getPion()==noirR or c->getPion()==blancR){
         int x=-1; int y=-1;
-        while(!joueurAt(i+x,j+y,p)==-1){
-            case_arrivee.push_back(*p->getCase(i+x,j+y));
+        while(!joueurAt(i+x,j+y,p)>-1){
+            case_arrivee.push_back(p->getCase(i+x,j+y));
             x--;y--;
         }
         x=1; y=-1;
-        while(!joueurAt(i+x,j+y,p)==-1){
-            case_arrivee.push_back(*p->getCase(i+x,j+y));
+        while(!joueurAt(i+x,j+y,p)>-1){
+            case_arrivee.push_back(p->getCase(i+x,j+y));
             x++;y--;
         }
         x=-1; y=1;
-        while(!joueurAt(i+x,j+y,p)==-1){
-            case_arrivee.push_back(*p->getCase(i+x,j+y));
+        while(!joueurAt(i+x,j+y,p)>-1){
+            case_arrivee.push_back(p->getCase(i+x,j+y));
             x--;y++;
         }
         x=1; y=1;
-        while(!joueurAt(i+x,j+y,p)==-1){
-            case_arrivee.push_back(*p->getCase(i+x,j+y));
+        while(!joueurAt(i+x,j+y,p)>-1){
+            case_arrivee.push_back(p->getCase(i+x,j+y));
             x++;y++;
         }
     }
 
     std::cout << "Choisissez la case d'arrivee : "<<std::endl;
     for(unsigned int i=0;i<case_arrivee.size();i++){
-        std::cout << "[" << i << "] : (" << case_arrivee[i].getX()<< ","<<
-         case_arrivee[i].getY() << ")" << std::endl;
+        std::cout << "[" << i << "] : (" << case_arrivee[i]->getX()<< ","<<
+         case_arrivee[i]->getY() << ")" << std::endl;
     }
     std::cout << "Numero du choix : ";
     unsigned int num;
-    std::cin >> num;
-    while(!(cin and num<case_arrivee.size())){
+    while(!(cin>>num and num<case_arrivee.size())){
+        vider_buffer();
         std::cout << "Erreur ! Entrez le numero de la case cible : ";
-        std::cin.clear();
-        std::cin >> num;
     }
-    Case cible=case_arrivee[num];
-    cible.addPion(c->getPion());
+    Case *cible=case_arrivee[num];
+    cible->addPion(c->getPion());
     c->retirePion();
-    if (cible.getY()==0 and cible.getPion()==noir){
-        cible.addPion(noirR);
+    if (cible->getY()==0 and cible->getPion()==noir){
+        std::cout << "Reine !";
+        cible->addPion(noirR);
     }
-    else if (cible.getY()==9 and cible.getPion()==blanc){
-        cible.addPion(blancR);
+    else if (cible->getY()==9 and cible->getPion()==blanc){
+        std::cout << "Reine !";
+        cible->addPion(blancR);
     }
 }
 
-void Dames::rafle(Case c){
-    int joueur=c.getPion()->getJoueur();
+void Dames::rafle(Case *c){
+    int joueur=c->getPion()->getJoueur();
     Plateau *p=Partie::getPartie()->getPlateau();
-    int i=c.getX();int j=c.getY();
-    vector<Case> case_arrivee;
-    vector<Case> case_a_bouffer;
+    int i=c->getX();int j=c->getY();
+    vector<Case*> case_arrivee;
+    vector<Case*> case_a_bouffer;
     int adj; int next;
-    if(c.getPion()==noir or c.getPion()==blanc){
+    if(c->getPion()==noir or c->getPion()==blanc){
          adj=joueurAt(i-1,j-1,p); next=joueurAt(i-2,j-2,p);
         if(adj!=joueur and next==-1 and adj>-1){
-            case_arrivee.push_back(*p->getCase(i-2,j-2));
-            case_a_bouffer.push_back(*p->getCase(i-1,j-1));}
+            case_arrivee.push_back(p->getCase(i-2,j-2));
+            case_a_bouffer.push_back(p->getCase(i-1,j-1));}
 
         adj=joueurAt(i-1,j+1,p); next=joueurAt(i-2,j+2,p);
         if(adj!=joueur and next==-1 and adj>-1){
-            case_arrivee.push_back(*p->getCase(i-2,j+2));
-            case_a_bouffer.push_back(*p->getCase(i-1,j+1));}
+            case_arrivee.push_back(p->getCase(i-2,j+2));
+            case_a_bouffer.push_back(p->getCase(i-1,j+1));}
 
         adj=joueurAt(i+1,j-1,p); next=joueurAt(i+2,j-2,p);
         if(adj!=joueur and next==-1 and adj>-1){
-            case_arrivee.push_back(*p->getCase(i+2,j-2));
-            case_a_bouffer.push_back(*p->getCase(i+1,j-1));}
+            case_arrivee.push_back(p->getCase(i+2,j-2));
+            case_a_bouffer.push_back(p->getCase(i+1,j-1));}
 
         adj=joueurAt(i+1,j+1,p); next=joueurAt(i+2,j+2,p);
         if(adj!=joueur and next==-1 and adj>-1){
-            case_arrivee.push_back(*p->getCase(i+2,j+2));
-            case_a_bouffer.push_back(*p->getCase(i+1,j+1));}
+            case_arrivee.push_back(p->getCase(i+2,j+2));
+            case_a_bouffer.push_back(p->getCase(i+1,j+1));}
     }
-    else if(c.getPion()==noirR or c.getPion()==blancR){
+    else if(c->getPion()==noirR or c->getPion()==blancR){
         int x=0; int y=0;
         do{
         x--;y--;
@@ -287,8 +289,8 @@ void Dames::rafle(Case c){
         while(next!=-2 and adj==-1);
         if(adj!=joueur and next==-1 and adj>-1){
             while (next==-1){
-                case_arrivee.push_back(*p->getCase(i+x-1,j+y-1));
-                case_a_bouffer.push_back(*p->getCase(i+x,j+y));
+                case_arrivee.push_back(p->getCase(i+x-1,j+y-1));
+                case_a_bouffer.push_back(p->getCase(i+x,j+y));
                 x--;y--; next=joueurAt(i+x-1,j+y-1,p);
             }
         }
@@ -301,8 +303,8 @@ void Dames::rafle(Case c){
         while(next!=-2 and adj==-1);
         if(adj!=joueur and next==-1 and adj>-1){
             while (next==-1){
-                case_arrivee.push_back(*p->getCase(i+x-1,j+y+1));
-                case_a_bouffer.push_back(*p->getCase(i+x,j+y));
+                case_arrivee.push_back(p->getCase(i+x-1,j+y+1));
+                case_a_bouffer.push_back(p->getCase(i+x,j+y));
                 x--;y++;next=joueurAt(i+x-1,j+y+1,p);
             }
         }
@@ -315,8 +317,8 @@ void Dames::rafle(Case c){
         while(next!=-2 and adj==-1);
         if(adj!=joueur and next==-1 and adj>-1){
             while (next==-1){
-                case_arrivee.push_back(*p->getCase(i+x+1,j+y-1));
-                case_a_bouffer.push_back(*p->getCase(i+x,j+y));
+                case_arrivee.push_back(p->getCase(i+x+1,j+y-1));
+                case_a_bouffer.push_back(p->getCase(i+x,j+y));
                 x++;y--;next=joueurAt(i+x-1,j+y+1,p);
             }
         }
@@ -329,8 +331,8 @@ void Dames::rafle(Case c){
         while(next!=-2 and adj==-1);
         if(adj!=joueur and next==-1 and adj>-1){
             while (next==-1){
-                case_a_bouffer.push_back(*p->getCase(i+x,j+y));
-                case_arrivee.push_back(*p->getCase(i+x+1,j+y+1));
+                case_a_bouffer.push_back(p->getCase(i+x,j+y));
+                case_arrivee.push_back(p->getCase(i+x+1,j+y+1));
                 x++;y++;next=joueurAt(i+x+1,j+y+1,p);
             }
         }
@@ -338,42 +340,50 @@ void Dames::rafle(Case c){
 
     std::cout << "Choisissez la case d'arrivee : "<<std::endl;
     for(unsigned int i=0;i<case_arrivee.size();i++){
-        std::cout << "[" << i << "] : (" << case_arrivee[i].getX()<< ","<<
-         case_arrivee[i].getY() << ")" << std::endl;
+        std::cout << "[" << i << "] : (" << case_arrivee[i]->getX()<< ","<<
+         case_arrivee[i]->getY() << ")" << std::endl;
     }
     std::cout << "Numero du choix : ";
     unsigned int num;
-    std::cin >> num;
-    while(!(cin and num<case_arrivee.size())){
+    while(!(cin>>num and num<case_arrivee.size())){
+        vider_buffer();
         std::cout << "Erreur ! Entrez le numero de la case cible : ";
-        std::cin.clear();
-        std::cin >> num;
     }
-    Case cible=case_arrivee[num];
-    cible.addPion(c.getPion());
-    Case victime=case_a_bouffer[num];
-    victime.retirePion();
-    c.retirePion();
-    if(peutRafler(cible.getX(),cible.getY(),cible.getPion())){
+    Case *cible=case_arrivee[num];
+    cible->addPion(c->getPion());
+    Case *victime=case_a_bouffer[num];
+    victime->retirePion();
+    c->retirePion();
+    if (cible->getY()==0 and cible->getPion()==noir){
+        std::cout << "Reine !";
+        cible->addPion(noirR);
+    }
+    else if (cible->getY()==9 and cible->getPion()==blanc){
+        std::cout << "Reine !";
+        cible->addPion(blancR);
+    }
+    if(peutRafler(cible->getX(),cible->getY(),cible->getPion())){
+        std::cout << "Encore des pieces a prendre : "<<std::endl;
+        Partie::getPartie()->affiche();
        rafle(cible);
        }
 }
 
-void Dames::choixPionPourRafle(vector<Case> cases){
+void Dames::choixPionPourRafle(vector<Case*> cases){
     std::cout << "Obligation de prendre des pieces adverses. "<<std::endl;
     std::cout << "Choisissez la piece avec laquelle rafler : "<<std::endl;
     for(unsigned int i=0;i<cases.size();i++){
-        std::cout << "[" << i << "] : (" << cases[i].getX()<< ","<<
-         cases[i].getY() << ")" << std::endl;
+        std::cout << "[" << i << "] : (" << cases[i]->getX()<< ","<<
+         cases[i]->getY() << ")" << std::endl;
     }
     std::cout << "Numero du choix : ";
     unsigned int num;
-    std::cin >> num;
-    while(!(cin and num<cases.size())){
+    while(!(cin>>num and num<cases.size())){
+        vider_buffer();
         std::cout << "Erreur ! Entrez le numero du pion a jouer : ";
-        std::cin.clear();
-        std::cin >> num;
     }
+    rafle(cases[num]);
+
 }
 
 Dames::~Dames()
