@@ -80,7 +80,6 @@ void Plateau::mettrePionDansCase(Pion *pion, unsigned int x, unsigned int y){
             break;
         }
     }
-  //return ((*m_cases[x][y]).hasPion());
 }
 
 
