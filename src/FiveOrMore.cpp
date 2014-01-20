@@ -127,8 +127,10 @@ bool mettreTroisPions(Plateau *p, vector<Pion*> vp){
     return true;
 }
 
-int **FiveOrMore::getHorizontalMask(/*Plateau *p,*/ int nbLignes, int nbColonnes){
+int **FiveOrMore::getHorizontalMask(){
     Plateau *p = Partie::getPartie()->getPlateau();
+    int nbLignes = p->get_sizeX();
+    int nbColonnes = p->get_sizeY();
     int **matrix = new int*[nbLignes];
     
     for(int i = 0; i < nbLignes; ++i)
@@ -167,8 +169,10 @@ int **FiveOrMore::getHorizontalMask(/*Plateau *p,*/ int nbLignes, int nbColonnes
     return matrix;
 }
 
-int **FiveOrMore::getVerticalMask(/*Plateau *p,*/ int nbLignes, int nbColonnes){
+int **FiveOrMore::getVerticalMask(){
     Plateau *p = Partie::getPartie()->getPlateau();
+    int nbLignes = p->get_sizeX();
+    int nbColonnes = p->get_sizeY();
     int **matrix = new int*[nbLignes];
     for(int i = 0; i < nbLignes; ++i)
         matrix[i] = new int[nbColonnes];
@@ -205,8 +209,10 @@ int **FiveOrMore::getVerticalMask(/*Plateau *p,*/ int nbLignes, int nbColonnes){
     return matrix;
 }
 
-int **FiveOrMore::getDiagonalMask1(/*Plateau *p,*/ int nbLignes, int nbColonnes){
+int **FiveOrMore::getDiagonalMask1(){
     Plateau *p = Partie::getPartie()->getPlateau();
+    int nbLignes = p->get_sizeX();
+    int nbColonnes = p->get_sizeY();
     int **matrix = new int*[nbLignes];
     for(int i = 0; i < nbLignes; ++i)
         matrix[i] = new int[nbColonnes];
@@ -283,8 +289,10 @@ int **FiveOrMore::getDiagonalMask1(/*Plateau *p,*/ int nbLignes, int nbColonnes)
     return matrix;
 }
 
-int **FiveOrMore::getDiagonalMask2(/*Plateau *p,*/ int nbLignes, int nbColonnes){
+int **FiveOrMore::getDiagonalMask2(){
     Plateau *p = Partie::getPartie()->getPlateau();
+    int nbLignes = p->get_sizeX();
+    int nbColonnes = p->get_sizeY();
     int **matrix = new int*[nbLignes];
     
     for(int i = 0; i < nbLignes; ++i)
@@ -391,10 +399,10 @@ void FiveOrMore::checkFive(){
     Plateau *p = Partie::getPartie()->getPlateau();
     int nbLignes = p->get_sizeX();
     int nbColonnes = p->get_sizeY();
-    int **hm = this->getHorizontalMask(nbLignes, nbColonnes);
-    int **vm = this->getVerticalMask(nbLignes, nbColonnes);
-    int **dm1 = this->getDiagonalMask1(nbLignes, nbColonnes);
-    int **dm2 = this->getDiagonalMask2(nbLignes, nbColonnes);
+    int **hm = this->getHorizontalMask();
+    int **vm = this->getVerticalMask();
+    int **dm1 = this->getDiagonalMask1();
+    int **dm2 = this->getDiagonalMask2();
     int **fm1 = fusionMatrix(hm, vm, nbLignes, nbColonnes);
     int **fm2 = fusionMatrix(dm1, fm1, nbLignes, nbColonnes);
     int **fm3 = fusionMatrix(dm2, fm2, nbLignes, nbColonnes);
@@ -426,6 +434,10 @@ FiveOrMore::FiveOrMore(unsigned int dimension, unsigned int nbPions){
     }
     
     Partie::getPartie()->setJeu(this);
+}
+FiveOrMore::~FiveOrMore(){
+    vp.clear();
+    vector<Pion*>(vp).swap(vp);
 }
 
 int FiveOrMore::fini (){

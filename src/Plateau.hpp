@@ -12,6 +12,7 @@ public:
   int get_sizeX();
   int get_sizeY();
   Plateau(int,int);
+  ~Plateau();
   Case* getCase (int, int);
   bool isEmpty();
   bool isFull();

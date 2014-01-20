@@ -15,6 +15,15 @@ Plateau::Plateau(int x, int y){
   }
 }
 
+Plateau::~Plateau(){
+    m_cases.clear();
+    vector< std::vector<Case> >(m_cases).swap(m_cases);
+    
+    m_casesLibres.clear();
+    vector<Case>(m_casesLibres).swap(m_casesLibres);
+}
+
+
 Case* Plateau::getCase(int x,int y){
   return &m_cases[x][y];
 }

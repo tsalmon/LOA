@@ -29,12 +29,13 @@ private:
     virtual int fini ();
     
     void checkFive();
-    int **getHorizontalMask( int nbLignes, int nbColonnes);
-    int **getVerticalMask(int nbLignes, int nbColonnes);
-    int **getDiagonalMask1(int nbLignes, int nbColonnes);
-    int **getDiagonalMask2( int nbLignes, int nbColonnes);
+    int **getHorizontalMask();
+    int **getVerticalMask();
+    int **getDiagonalMask1();
+    int **getDiagonalMask2();
 public:
     FiveOrMore(unsigned int dimension, unsigned int nbPions);
+    virtual ~FiveOrMore();
 };
 
 #endif /* defined(__Projet__FiveOrMore__) */
