@@ -10,17 +10,20 @@ Dames::Dames()
     blanc = factory.getPion("blanc");
     blanc->setSymbole('b');
     noir = factory.getPion("noir");
-    noir->setSymbole('n');
     blancR = factory.getPion("blancR");
     blancR->setSymbole('B');
+    blancR->setJoueur(0);
     noirR = factory.getPion("noirR");
     noirR->setSymbole('N');
+    noirR->setJoueur(1);
     Partie::getPartie()->setJeu(this);
+    noir->setSymbole('n');
+    noir->setJoueur(1);
+    blanc->setJoueur(0);
 }
 
 void Dames::newPartie(){
     Plateau *p = Partie::getPartie()->getPlateau();
-#include <iostream>
     for (int i=0;i<p->get_sizeX();i++){
         for (int j=0;j<p->get_sizeY();j++){
             if(j%2!=i%2){
@@ -55,13 +58,7 @@ vector<Case> Dames::peuventRafler(){
 }
 
 bool Dames::peutRafler(int i, int j, Pion *pion){
-    int joueur;
-    if(pion==noir or pion==noirR){
-        joueur=1;
-    }
-    else{
-        joueur=0;
-    }
+    int joueur=pion->getJoueur();
     int adj; int next;
     Plateau *p=Partie::getPartie()->getPlateau();
     if(pion==noir or pion==blanc){
@@ -110,6 +107,7 @@ bool Dames::peutRafler(int i, int j, Pion *pion){
         while(next>-1 and adj==-1);
         if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
     }
+    return false;
 
 
 }
@@ -126,7 +124,7 @@ int Dames::joueurAt(int x,int y, Plateau* p){
 
 
 bool Dames::peutJouer(){
-    int joueur=Partie::getPartie()->getJoueurs()->getCourrant();
+    //int joueur=Partie::getPartie()->getJoueurs()->getCourrant();
     vector<Case> peuventPrendre= peuventRafler();
     if (peuventPrendre.size()!=0){
         choixPionPourRafle(peuventPrendre);
@@ -134,84 +132,87 @@ bool Dames::peutJouer(){
     else{
         //choixPionDeplacement();
     }
-
+    return true;
 }
 
 
 void Dames::rafle(Case c){
-    int joueur;
-    if(c.getPion()==noir or c.getPion()==noirR){
-        joueur=1;
-    }
-    else{
-        joueur=0;
-    }
+    int joueur=c.getPion()->getJoueur();
     Plateau *p=Partie::getPartie()->getPlateau();
     int i=c.getX();int j=c.getY();
     vector<Case> case_arrivee;
     int adj; int next;
     if(c.getPion()==noir or c.getPion()==blanc){
-         adj=joueurAt(-1,-1,p); next=joueurAt(-2,-2,p);
+         adj=joueurAt(i-1,j-1,p); next=joueurAt(i-2,j-2,p);
+        if(adj!=joueur and next==-1 and adj>-1){
+            case_arrivee.push_back(*p->getCase(i-2,j-2));}
+
+        adj=joueurAt(i-1,j+1,p); next=joueurAt(i-2,j+2,p);
+        if(adj!=joueur and next==-1 and adj>-1){
+            case_arrivee.push_back(*p->getCase(i-2,j+2));}
+
+        adj=joueurAt(i+1,j-1,p); next=joueurAt(i+2,j-2,p);
         if(adj!=joueur and next==joueur and adj>-1 and next>-1){
-            case_arrivee.pop_back(p->getCase()}
+            case_arrivee.push_back(*p->getCase(i+2,j-2));}
 
-        adj=joueurAt(-1,1,p); next=joueurAt(-2,2,p);
+        adj=joueurAt(i+1,j+1,p); next=joueurAt(i+2,j+2,p);
         if(adj!=joueur and next==joueur and adj>-1 and next>-1){
-            rec.getPion()turn true;}
-
-        adj=joueurAt(1,-1,p); next=joueurAt(2,-2,p);
-        if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
-
-      if(pion==noir or pion==blanc){
-      adj=joueurAt(1,1,p); next=joueurAt(2,2,p);
-        if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
+            case_arrivee.push_back(*p->getCase(i+2,j+2));}
     }
-    if(c.getPion()==noirR or c.getPion()==blancR){
+    else if(c.getPion()==noirR or c.getPion()==blancR){
         int x=0; int y=0;
         do{
         x--;y--;
-        adj=joueurAt(x,y,p); next=joueurAt(x-1,y-1,p);
+        adj=joueurAt(i+x,j+y,p); next=joueurAt(i+x-1,j+y-1,p);
         }
         while(next>-1 and adj==-1);
-        if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){
+
+        }
 
         x=0; y=0;
         do{
         x--;y++;
-        adj=joueurAt(x,y,p); next=joueurAt(x-1,y+1,p);
+        adj=joueurAt(i+x,j+y,p); next=joueurAt(i+x-1,j+y+1,p);
         }
         while(next>-1 and adj==-1);
-        if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){
+
+        }
 
         x=0; y=0;
         do{
         x++;y--;
-        adj=joueurAt(x,y,p); next=joueurAt(x+1,y-1,p);
+        adj=joueurAt(i+x,j+y,p); next=joueurAt(i+x+1,j+y-1,p);
         }
         while(next>-1 and adj==-1);
-        if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){
+
+        }
 
         x=0; y=0;
         do{
         x++;y++;
-        adj=joueurAt(x,y,p); next=joueurAt(x+1,y+1,p);
+        adj=joueurAt(i+x,j+y,p); next=joueurAt(i+x+1,j+y+1,p);
         }
         while(next>-1 and adj==-1);
-        if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
-    }*/
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){
+
+        }
+    }
 
 
 }
 
-void Dames::choixPionPourRafle(vector<Case> cases){}
+void Dames::choixPionPourRafle(vector<Case> cases){
     std::cout << "Obligation de prendre des pieces adverses. "
      << "Choisissez la pièce avec laquelle rafler : "<<std::endl;
-    for(int i=0;i<cases.size();i++){
+    for(unsigned int i=0;i<cases.size();i++){
         std::cout << "[" << i << "] : (" << cases[i].getX()<< ","<<
          cases[i].getY() << ")" << std::endl;
     }
     std::cout << "Numéro du choix : ";
-    int num;
+    unsigned int num;
     std::cin >> num;
     while(!(cin and num<cases.size())){
         std::cout << "Erreur ! Entrez le numero du pion à jouer : ";
