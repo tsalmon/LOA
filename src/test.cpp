@@ -13,7 +13,7 @@ int main(int argc, char **argv){
   } else if(argv[1][0] == '-' && argv[1][1] == 'p' && argv[1][2] == '\0'){
     new Puissance4();
   } else if(argv[1][0] == '-' && argv[1][1] == 'o' && argv[1][2] == '\0'){
-//    new Othello();
+    new Othello();
   } else if(argv[1][0] == '-' && argv[1][1] == 'f' && argv[1][2] == '\0'){
       new FiveOrMore(10, 3);
   } else {
