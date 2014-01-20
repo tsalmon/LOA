@@ -12,7 +12,7 @@ char getRandomSymbole(vector<Pion*> vp){
     char c;
     while (true) {
         c = "abcdefghijklmnopqrstuvwxyz"[rand() % 26];
-        for (int i = 0; i<vp.size(); ++i) {
+        for (unsigned int i = 0; i<vp.size(); ++i) {
             if(c == vp[i]->getSymbole())
                 continue;
         }
@@ -23,7 +23,7 @@ char getRandomSymbole(vector<Pion*> vp){
 
 unsigned int calculPoints(unsigned int pionsSupprimes){
     unsigned int points = 50;
-    for (int i = 6; i<=pionsSupprimes; ++i) {
+    for (unsigned int i = 6; i<=pionsSupprimes; ++i) {
         points += (i-5)*30;
     }
     return points;
@@ -426,7 +426,7 @@ FiveOrMore::FiveOrMore(unsigned int dimension, unsigned int nbPions){
     char s;
     PionFactory *factory = &PionFactory::getInstance();
 
-    for(int i = 0; i<nbPions; ++i){
+    for(unsigned int i = 0; i<nbPions; ++i){
         s=getRandomSymbole(vp);
         Pion *r = factory->getPion(string(1,s));
         r->setSymbole(s);
