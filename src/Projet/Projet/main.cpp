@@ -9,9 +9,9 @@
 #include <iostream>
 #include "FiveOrMore.h"
 
-
+/*
 int main(int argc, const char * argv[])
 {
     FiveOrMore j = FiveOrMore(10, 3);
-}
+}*/
 
