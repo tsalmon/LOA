@@ -1,4 +1,4 @@
-#include "Dames.h"
+#include "Dames.hpp"
 #include "Partie.hpp"
 #include "Plateau.hpp"
 #include <iostream>
@@ -66,23 +66,23 @@ bool Dames::peutRafler(int i, int j, Pion *pion){
     int adj; int next;
     Plateau *p=Partie::getPartie()->getPlateau();
     if(pion==noir or pion==blanc){
-         adj=joueurAt(-1,-1,p); next=joueurAt(-2,-2,p);
+         adj=joueurAt(i-1,j-1,p); next=joueurAt(i-2,j-2,p);
         if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
 
-        adj=joueurAt(-1,1,p); next=joueurAt(-2,2,p);
+        adj=joueurAt(i-1,j+1,p); next=joueurAt(i-2,j+2,p);
         if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
 
-        adj=joueurAt(1,-1,p); next=joueurAt(2,-2,p);
+        adj=joueurAt(i+1,j-1,p); next=joueurAt(i+2,j-2,p);
         if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
 
-        adj=joueurAt(1,1,p); next=joueurAt(2,2,p);
+        adj=joueurAt(i+1,j+1,p); next=joueurAt(i+2,j+2,p);
         if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
     }
-    if(pion==noirR or pion==blancR){
+    else if(pion==noirR or pion==blancR){
         int x=0; int y=0;
         do{
         x--;y--;
-        adj=joueurAt(x,y,p); next=joueurAt(x-1,y-1,p);
+        adj=joueurAt(i+x,y,p); next=joueurAt(i+x-1,j+y-1,p);
         }
         while(next>-1 and adj==-1);
         if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
@@ -90,7 +90,7 @@ bool Dames::peutRafler(int i, int j, Pion *pion){
         x=0; y=0;
         do{
         x--;y++;
-        adj=joueurAt(x,y,p); next=joueurAt(x-1,y+1,p);
+        adj=joueurAt(i+x,j+y,p); next=joueurAt(i+x-1,j+y+1,p);
         }
         while(next>-1 and adj==-1);
         if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
@@ -98,7 +98,7 @@ bool Dames::peutRafler(int i, int j, Pion *pion){
         x=0; y=0;
         do{
         x++;y--;
-        adj=joueurAt(x,y,p); next=joueurAt(x+1,y-1,p);
+        adj=joueurAt(i+x,j+y,p); next=joueurAt(i+x+1,j+y-1,p);
         }
         while(next>-1 and adj==-1);
         if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
@@ -106,7 +106,7 @@ bool Dames::peutRafler(int i, int j, Pion *pion){
         x=0; y=0;
         do{
         x++;y++;
-        adj=joueurAt(x,y,p); next=joueurAt(x+1,y+1,p);
+        adj=joueurAt(i+x,j+y,p); next=joueurAt(i+x+1,j+y+1,p);
         }
         while(next>-1 and adj==-1);
         if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
@@ -147,11 +147,12 @@ void Dames::rafle(Case c){
     else{
         joueur=0;
     }
-    int adj; int next;
-    Plateau *p=Partie::getPartie()->getPlateau();/*
+    Plateau *p=Partie::getPartie()->getPlateau();
+    vector<Case> case_arrivee;
+    int adj; int next;/*
     if(c.getPion()==noir or c.getPion()==blanc){
          adj=joueurAt(-1,-1,p); next=joueurAt(-2,-2,p);
-        if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){case_arrivee.pop_back(p->getCase()}
 
         adj=joueurAt(-1,1,p); next=joueurAt(-2,2,p);
         if(adj!=joueur and next==joueur and adj>-1 and next>-1){rec.getPion()turn true;}
@@ -159,7 +160,8 @@ void Dames::rafle(Case c){
         adj=joueurAt(1,-1,p); next=joueurAt(2,-2,p);
         if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
 
-        adj=joueurAt(1,1,p); next=joueurAt(2,2,p);
+      if(pion==noir or pion==blanc){
+      adj=joueurAt(1,1,p); next=joueurAt(2,2,p);
         if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
     }
     if(c.getPion()==noirR or c.getPion()==blancR){
