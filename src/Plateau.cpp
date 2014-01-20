@@ -3,26 +3,13 @@
 #include "Partie.hpp"
 
 Plateau::Plateau(int x, int y){
-    /*   this->colonnes = c;
-     this->rangs = r;
-     for(int i = 0; i<r; ++i){
-     vector<Case> cell;
-     this->matrix.push_back(cell);
-     for (int j = 0; j<c; ++j) {
-     this->matrix[i].push_back(Case(i,j));
-     }
-     } */
-  //unsigned a = 0, b = 0;
   m_nbColonnes=x;
   m_nbLignes=y;
-  //m_cases = new Case**[x];
   for (int i=0;i< m_nbLignes; i++){
-    //m_cases[i] = new Case*[y];
       vector<Case> cell;
       this->m_cases.push_back(cell);
     for(int j=0;j< m_nbColonnes; j++){
         this->m_cases[i].push_back(Case(i, j));
-        //m_cases[i][j] = new Case(i, j);
         m_casesLibres.push_back(this->m_cases[i][j]);
     }
   }
