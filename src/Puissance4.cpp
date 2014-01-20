@@ -4,10 +4,10 @@
 Puissance4::Puissance4(){
   cout << "==== Puissance 4 ====" << endl;
   
-  pO = PionFactory::getInstance().getPion("O");
+  *pO = PionFactory::getInstance().getPion("O");
   pO->setJoueur(0);
   pO->setSymbole('O');
-  pX = PionFactory::getInstance().getPion("X");
+  *pX = PionFactory::getInstance().getPion("X");
   pX->setSymbole('X');
   pX->setJoueur(1);
   
@@ -96,9 +96,9 @@ void Puissance4::newPartie (){
 	   (i == 0 && p->hasPion(i, choix_pos)));
     i = (i==0)? 0 : i-1;
     if(j->getCourrant() == 0){
-      p->mettrePionDansCase(*pO, i, choix_pos);
+      p->mettrePionDansCase(pO, i, choix_pos);
     } else {
-      p->mettrePionDansCase(*pX, i, choix_pos);
+      p->mettrePionDansCase(pX, i, choix_pos);
     }
   }while(not hasP4(i, choix_pos));
   affichage();

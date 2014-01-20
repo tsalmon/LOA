@@ -7,13 +7,13 @@ Dames::Dames()
     nbLignes=10;
     nbColonnes=10;
     PionFactory &factory=PionFactory::getInstance();
-    blanc = factory.getPion("blanc");
+    *blanc = factory.getPion("blanc");
     blanc->setSymbole('b');
-    noir = factory.getPion("noir");
-    blancR = factory.getPion("blancR");
+    *noir = factory.getPion("noir");
+    *blancR = factory.getPion("blancR");
     blancR->setSymbole('B');
     blancR->setJoueur(0);
-    noirR = factory.getPion("noirR");
+    *noirR = factory.getPion("noirR");
     noirR->setSymbole('N');
     noirR->setJoueur(1);
     noir->setSymbole('n');
@@ -27,8 +27,8 @@ void Dames::newPartie(){
     for (int i=0;i<p->get_sizeX();i++){
         for (int j=0;j<p->get_sizeY();j++){
             if(j%2!=i%2){
-                if(i<4){p->mettrePionDansCase(*noir,i,j);}
-                if(i>=6){p->mettrePionDansCase(*blanc,i,j);}
+                if(i<4){p->mettrePionDansCase(noir,i,j);}
+                if(i>=6){p->mettrePionDansCase(blanc,i,j);}
             }
         }
     }
@@ -239,13 +239,13 @@ void Dames::deplace(Case *c){
         std::cin >> num;
     }
     Case cible=case_arrivee[num];
-    cible.addPion(*c->getPion());
+    cible.addPion(c->getPion());
     c->retirePion();
     if (cible.getY()==0 and cible.getPion()==noir){
-        cible.addPion(*noirR);
+        cible.addPion(noirR);
     }
     else if (cible.getY()==9 and cible.getPion()==blanc){
-        cible.addPion(*blancR);
+        cible.addPion(blancR);
     }
 }
 
@@ -349,7 +349,7 @@ void Dames::rafle(Case c){
         std::cin >> num;
     }
     Case cible=case_arrivee[num];
-    cible.addPion(*c.getPion());
+    cible.addPion(c.getPion());
     Case victime=case_a_bouffer[num];
     victime.retirePion();
     c.retirePion();
