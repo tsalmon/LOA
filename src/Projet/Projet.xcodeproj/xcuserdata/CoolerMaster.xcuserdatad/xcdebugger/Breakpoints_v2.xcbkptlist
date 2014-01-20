@@ -143,14 +143,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../FiveOrMore.cpp"
-            timestampString = "411937939.754057"
+            filePath = "../test.cpp"
+            timestampString = "411939081.580721"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "423"
-            endingLineNumber = "423"
-            landmarkName = "FiveOrMore::FiveOrMore(unsigned int dimension, unsigned int nbPions)"
-            landmarkType = "5">
+            startingLineNumber = "8"
+            endingLineNumber = "8"
+            landmarkName = "main(int argc, char **argv)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
