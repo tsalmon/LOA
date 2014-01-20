@@ -6,7 +6,7 @@ Pion::Pion(string nom){
 }
 
 void Pion::setJoueur(int j){
-    this->joueur = j;
+  joueur = j;
 }
 
 int Pion::getJoueur(){

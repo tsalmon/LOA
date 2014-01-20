@@ -54,7 +54,7 @@ bool Dames::peutJouer(){
         choixPionPourRafle(peuventPrendre);
     }
     else{
-        choixPionDeplacement();
+      //choixPionDeplacement();
     }
 
 }

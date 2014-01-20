@@ -5,9 +5,9 @@
 #include "Plateau.hpp"
 class Partie{
 private:
-    Jeu *jeu;
-    Joueur *joueurs;
-    Plateau *plateau;
+  Jeu *jeu;
+  Joueur *joueurs;
+  Plateau *plateau;
   void operator=(Partie &){};
   Partie(Partie &);
 public:

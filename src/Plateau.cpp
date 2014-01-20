@@ -87,7 +87,6 @@ ostream &operator<<(ostream &os,const Plateau &b) {
     return os;
 }
 
-
 int Plateau::morePions(){
   int nbjoueurs=Partie::getPartie()->getNbJoueur();
   int *joueurs = new int[nbjoueurs];

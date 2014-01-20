@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-W -Wall -ansi -pedantic
-LDFLAGS=
+LDFLAGS= -g
 EXEC=platolib.exe
 SRC=$(wildcard *.cpp)
 OBJ=$(SRC:.cpp=.o) 
@@ -8,10 +8,10 @@ OBJ=$(SRC:.cpp=.o)
 all:$(EXEC)
 
 $(EXEC): $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS)
+	$(CC) $(LDFLAGS) -o $@ $^ $(CFLAGS)
 
 %.o: %.cpp
-	$(CC) -o $@ -c $< $(CFLAGS) 
+	$(CC) $(LDFLAGS) -o $@ -c $< $(CFLAGS) 
 
 .PHONY: clean mrproper
 
