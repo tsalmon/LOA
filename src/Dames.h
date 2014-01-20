@@ -4,7 +4,7 @@
 #include "Jeu.hpp"
 #include "PionFactory.hpp"
 #include <vector>
-#include "Case.hpp"
+#include "Plateau.hpp"
 
 
 class Dames : public Jeu{
@@ -24,7 +24,7 @@ class Dames : public Jeu{
         void choixPionDeplacement();
         bool peutRafler(int,int,Pion*);
         void rafle(Case);
-
+        int joueurAt(int,int,Plateau*);
     private:
 };
 

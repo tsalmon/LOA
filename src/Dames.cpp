@@ -10,9 +10,13 @@ Dames::Dames()
     nbColonnes=10;
     PionFactory &factory=PionFactory::getInstance();
     blanc = factory.getPion("blanc");
+    blanc->setSymbole('b');
     noir = factory.getPion("noir");
+    noir->setSymbole('n');
     blancR = factory.getPion("blancR");
+    blancR->setSymbole('B');
     noirR = factory.getPion("noirR");
+    noirR->setSymbole('N');
     Partie::getPartie()->setJeu(this);
 }
 
@@ -37,48 +41,88 @@ int Dames::fini(){
 
 vector<Case> Dames::peuventRafler(){
     Plateau *p=Partie::getPartie()->getPlateau();
+    vector<Case> result;
     for (int i=0;i<p->get_sizeX();i++){
         for (int j=0;j<p->get_sizeY();j++){
-            Pion *pion =p->getCase(i,j)->getPion();
-            if(pion!=NULL){
+            if(p->hasPion(i,j)){
+                Pion *pion =p->getCase(i,j)->getPion();
                 if (peutRafler(i,j,pion)){
-
+                    result.push_back(*p->getCase(i,j));
                 }
             }
         }
     }
+    return result;
 }
 
-bool Dames::peutRafler(int i, int j, Pion *p){
-    Plateau *plateau=Partie::getPartie()->getPlateau();
+bool Dames::peutRafler(int i, int j, Pion *pion){
     int joueur;
-    if(p==noir or p==noirR){
+    if(pion==noir or pion==noirR){
         joueur=1;
     }
     else{
         joueur=0;
     }
-    if(p==noir or p==blanc){
-        if(plateau->getCase(i-1,j-1)->getPion()->getJoueur()!=joueur and
-           plateau->getCase(i-2,j-2)->getPion()->getJoueur()==joueur){return true;}
-        if(plateau->getCase(i-1,j+1)->getPion()->getJoueur()!=joueur and
-           plateau->getCase(i-2,j+2)->getPion()->getJoueur()==joueur){return true;}
-        if(plateau->getCase(i+1,j+1)->getPion()->getJoueur()!=joueur and
-           plateau->getCase(i+2,j+2)->getPion()->getJoueur()==joueur){return true;}
-        if(plateau->getCase(i+1,-1)->getPion()->getJoueur()!=joueur and
-           plateau->getCase(i+2,j-2)->getPion()->getJoueur()==joueur){return true;}
+    int adj; int next;
+    Plateau *p=Partie::getPartie()->getPlateau();
+    if(pion==noir or pion==blanc){
+         adj=joueurAt(-1,-1,p); next=joueurAt(-2,-2,p);
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
+
+        adj=joueurAt(-1,1,p); next=joueurAt(-2,2,p);
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
+
+        adj=joueurAt(1,-1,p); next=joueurAt(2,-2,p);
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
+
+        adj=joueurAt(1,1,p); next=joueurAt(2,2,p);
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
     }
-    if(p==noirR or p==blancR){
-        if(plateau->getCase(i-1,j-1)->getPion()->getJoueur()!=joueur and
-           plateau->getCase(i-2,j-2)->getPion()->getJoueur()==joueur){return true;}
-        if(plateau->getCase(i-1,j+1)->getPion()->getJoueur()!=joueur and
-           plateau->getCase(i-2,j+2)->getPion()->getJoueur()==joueur){return true;}
-        if(plateau->getCase(i+1,j+1)->getPion()->getJoueur()!=joueur and
-           plateau->getCase(i+2,j+2)->getPion()->getJoueur()==joueur){return true;}
-        if(plateau->getCase(i+1,-1)->getPion()->getJoueur()!=joueur and
-           plateau->getCase(i+2,j-2)->getPion()->getJoueur()==joueur){return true;}
+    if(pion==noirR or pion==blancR){
+        int x=0; int y=0;
+        do{
+        x--;y--;
+        adj=joueurAt(x,y,p); next=joueurAt(x-1,y-1,p);
+        }
+        while(next>-1 and adj==-1);
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
+
+        x=0; y=0;
+        do{
+        x--;y++;
+        adj=joueurAt(x,y,p); next=joueurAt(x-1,y+1,p);
+        }
+        while(next>-1 and adj==-1);
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
+
+        x=0; y=0;
+        do{
+        x++;y--;
+        adj=joueurAt(x,y,p); next=joueurAt(x+1,y-1,p);
+        }
+        while(next>-1 and adj==-1);
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
+
+        x=0; y=0;
+        do{
+        x++;y++;
+        adj=joueurAt(x,y,p); next=joueurAt(x+1,y+1,p);
+        }
+        while(next>-1 and adj==-1);
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
     }
 
+
+}
+
+
+int Dames::joueurAt(int x,int y, Plateau* p){
+    if(x<0 or y <0 or x>9 or y>9){return -2;}
+    else{
+        if(p->hasPion(x,y)){
+            return p->getCase(x,y)->getPion()->getJoueur();}
+        else{return -1;}
+    }
 }
 
 
@@ -96,6 +140,63 @@ bool Dames::peutJouer(){
 
 
 void Dames::rafle(Case c){
+    int joueur;
+    if(c.getPion()==noir or c.getPion()==noirR){
+        joueur=1;
+    }
+    else{
+        joueur=0;
+    }
+    int adj; int next;
+    Plateau *p=Partie::getPartie()->getPlateau();/*
+    if(c.getPion()==noir or c.getPion()==blanc){
+         adj=joueurAt(-1,-1,p); next=joueurAt(-2,-2,p);
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
+
+        adj=joueurAt(-1,1,p); next=joueurAt(-2,2,p);
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){rec.getPion()turn true;}
+
+        adj=joueurAt(1,-1,p); next=joueurAt(2,-2,p);
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
+
+        adj=joueurAt(1,1,p); next=joueurAt(2,2,p);
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
+    }
+    if(c.getPion()==noirR or c.getPion()==blancR){
+        int x=0; int y=0;
+        do{
+        x--;y--;
+        adj=joueurAt(x,y,p); next=joueurAt(x-1,y-1,p);
+        }
+        while(next>-1 and adj==-1);
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
+
+        x=0; y=0;
+        do{
+        x--;y++;
+        adj=joueurAt(x,y,p); next=joueurAt(x-1,y+1,p);
+        }
+        while(next>-1 and adj==-1);
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
+
+        x=0; y=0;
+        do{
+        x++;y--;
+        adj=joueurAt(x,y,p); next=joueurAt(x+1,y-1,p);
+        }
+        while(next>-1 and adj==-1);
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
+
+        x=0; y=0;
+        do{
+        x++;y++;
+        adj=joueurAt(x,y,p); next=joueurAt(x+1,y+1,p);
+        }
+        while(next>-1 and adj==-1);
+        if(adj!=joueur and next==joueur and adj>-1 and next>-1){return true;}
+    }*/
+
+
 }
 
 void Dames::choixPionPourRafle(vector<Case> cases){
