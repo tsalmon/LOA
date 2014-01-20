@@ -9,13 +9,13 @@ PionFactory &PionFactory::getInstance(){
     return instance;
 }
 
-Pion PionFactory::getPion(string nom)
+Pion *PionFactory::getPion(string nom)
 {
     for (unsigned int i = 0; i<pions.size(); ++i) {
         if(pions[i].nom == nom)
-            return pions[i];
+            return &pions[i];
     }
     Pion *ch = new Pion(nom);
     pions.push_back(*ch);
-    return pions[pions.size()-1];
+    return &pions[pions.size()-1];
 }
