@@ -228,6 +228,7 @@ void Dames::deplace(Case *c){
         }
     }
     if(case_arrivee.size()==0){
+    std::cout << "Piece bloquee ! "<<std::endl;
         choixPionDeplacement(Partie::getPartie()->getJoueurs()->getCourrant());
         return;
     }
@@ -245,11 +246,11 @@ void Dames::deplace(Case *c){
     Case *cible=case_arrivee[num];
     cible->addPion(c->getPion());
     c->retirePion();
-    if (cible->getX()==0 and cible->getPion()==noir){
+    if (cible->getX()==9 and cible->getPion()==noir){
         std::cout << "Reine !";
         cible->addPion(noirR);
     }
-    else if (cible->getX()==9 and cible->getPion()==blanc){
+    else if (cible->getX()==0 and cible->getPion()==blanc){
         std::cout << "Reine !";
         cible->addPion(blancR);
     }
@@ -357,11 +358,11 @@ void Dames::rafle(Case *c){
     Case *victime=case_a_bouffer[num];
     victime->retirePion();
     c->retirePion();
-    if (cible->getX()==0 and cible->getPion()==noir){
+    if (cible->getX()==9 and cible->getPion()==noir){
         std::cout << "Reine !";
         cible->addPion(noirR);
     }
-    else if (cible->getX()==9 and cible->getPion()==blanc){
+    else if (cible->getX()==0 and cible->getPion()==blanc){
         std::cout << "Reine !";
         cible->addPion(blancR);
     }
