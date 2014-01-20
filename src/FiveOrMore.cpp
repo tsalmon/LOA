@@ -420,9 +420,9 @@ FiveOrMore::FiveOrMore(unsigned int dimension, unsigned int nbPions){
 
     for(int i = 0; i<nbPions; ++i){
         s=getRandomSymbole(vp);
-        Pion r = factory->getPion(string(1,s));
-        r.setSymbole(s);
-        vp.push_back(new Pion(r));
+        Pion *r = factory->getPion(string(1,s));
+        r->setSymbole(s);
+        vp.push_back(new Pion(*r));
     }
     
     Partie::getPartie()->setJeu(this);
