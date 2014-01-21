@@ -38,3 +38,8 @@ int Partie::getNbJoueur(){
 void Partie::affiche(){
     std::cout<<*plateau<<std::endl;
 }
+
+Partie::~Partie(){
+    delete joueurs;
+    delete plateau;
+};

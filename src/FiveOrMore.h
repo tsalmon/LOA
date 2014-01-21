@@ -24,12 +24,10 @@ private:
     virtual int getNbLignes();
     virtual int getNbJoueur();
     virtual int getNbColonnes();
-    virtual bool peutJouer ();
-    virtual void newPartie ();
-    virtual int fini ();
+
     
     void checkFive();
-    void mettreTroisPions(vector<Pion*>);
+    void mettreTroisPions();
     int **getHorizontalMask();
     int **getVerticalMask();
     int **getDiagonalMask1();
@@ -37,6 +35,9 @@ private:
 public:
     FiveOrMore(unsigned int dimension, unsigned int nbPions);
     virtual ~FiveOrMore();
+    virtual bool peutJouer ();
+    virtual void newPartie ();
+    virtual int fini ();
 };
 
 #endif /* defined(__Projet__FiveOrMore__) */

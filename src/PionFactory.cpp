@@ -19,3 +19,8 @@ Pion *PionFactory::getPion(string nom)
     pions.push_back(*ch);
     return &pions[pions.size()-1];
 }
+
+PionFactory::~PionFactory(){
+    pions.clear();
+    vector<Pion>(pions).swap(pions);
+}

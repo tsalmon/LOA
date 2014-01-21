@@ -6,16 +6,6 @@ Case::Case(unsigned int x, unsigned int y, Pion *p){
     this->pionImbrique = p;
 }
 
-/*
-bool Case::operator==(const Case c) const{
-    return (this->getX() == c.getX() && this->getY() == c.getY());
-}
-
-bool Case::operator!=(const Case c) const{
-    return (this->getX() != c.getX() || this->getY() != c.getY());
-}
-*/
-
 Pion *Case::getPion() const{
     return this->pionImbrique;
 }

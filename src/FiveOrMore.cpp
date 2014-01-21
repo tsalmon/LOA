@@ -436,7 +436,7 @@ bool FiveOrMore::peutJouer (){
     return (p->m_casesLibres.size()>=3);
 }
 
-void FiveOrMore::mettreTroisPions(/*Plateau *p,*/ vector<Pion*> vp){
+void FiveOrMore::mettreTroisPions(){
     Plateau *p = Partie::getPartie()->getPlateau();
     unsigned long cp = vp.size();
     unsigned long ccl = p->m_casesLibres.size();
@@ -455,7 +455,7 @@ void FiveOrMore::mettreTroisPions(/*Plateau *p,*/ vector<Pion*> vp){
 void FiveOrMore::newPartie (){
     int srcX, srcY, dstX, dstY;
     Plateau *p = Partie::getPartie()->getPlateau();
-    mettreTroisPions(vp);
+    mettreTroisPions();
     while(!p->isFull()){
         Partie::getPartie()->affiche();
         cout<<"Please, input source X: ";
@@ -490,7 +490,7 @@ void FiveOrMore::newPartie (){
             if (!peutJouer())
                 break;
             
-            mettreTroisPions(vp);
+            mettreTroisPions();
             checkFive();
             cout << "Points: " << points << endl;
         } else {

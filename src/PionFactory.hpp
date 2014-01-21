@@ -10,6 +10,7 @@ using namespace std;
 class PionFactory{
 private:
     PionFactory();
+    ~PionFactory();
     PionFactory(PionFactory &);
     void operator=(PionFactory &);
     vector<Pion> pions;

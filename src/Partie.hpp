@@ -17,7 +17,7 @@ private:
   Partie(Partie &);
 public:
   Partie(){}
-  ~Partie(){};
+  ~Partie();
   static Partie *getPartie();
   int joueTour ();
   void setJeu(Jeu *j);

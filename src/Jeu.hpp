@@ -9,7 +9,6 @@ protected:
   int nbColonnes;
   int nbJoueur;
 public:
-  //virtual void affichage()=0;
   virtual int fini () =0;
   virtual bool peutJouer () =0;
   virtual void newPartie () =0;

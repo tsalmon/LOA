@@ -15,6 +15,7 @@ public:
     int getJoueur();
     void setSymbole(char);
     char getSymbole() const;
+    string getNom() const;
     friend ostream &operator<<(ostream &,const Pion &);
 };
 
