@@ -32,7 +32,8 @@ void Dames::newPartie(){
             }
         }
     }
-    Partie::getPartie()->joueTour();
+    int gagnant=Partie::getPartie()->joueTour();
+    std::cout <<"Le joueur "<<gagnant<<" remporte la partie";
 }
 
 int Dames::fini(){
@@ -79,7 +80,7 @@ bool Dames::peutRafler(int i, int j, Pion *pion){
         int x=0; int y=0;
         do{
         x--;y--;
-        adj=joueurAt(i+x,y,p); next=joueurAt(i+x-1,j+y-1,p);
+        adj=joueurAt(i+x,j+y,p); next=joueurAt(i+x-1,j+y-1,p);
         }
         while(next!=-2 and adj==-1);
         if(adj!=joueur and next==-1 and adj>-1 ){return true;}
@@ -207,22 +208,22 @@ void Dames::deplace(Case *c){
     }
     else if(c->getPion()==noirR or c->getPion()==blancR){
         int x=-1; int y=-1;
-        while(!joueurAt(i+x,j+y,p)>-1){
+        while(joueurAt(i+x,j+y,p)==-1){
             case_arrivee.push_back(p->getCase(i+x,j+y));
             x--;y--;
         }
         x=1; y=-1;
-        while(!joueurAt(i+x,j+y,p)>-1){
+        while(joueurAt(i+x,j+y,p)==-1){
             case_arrivee.push_back(p->getCase(i+x,j+y));
             x++;y--;
         }
         x=-1; y=1;
-        while(!joueurAt(i+x,j+y,p)>-1){
+        while(joueurAt(i+x,j+y,p)==-1){
             case_arrivee.push_back(p->getCase(i+x,j+y));
             x--;y++;
         }
         x=1; y=1;
-        while(!joueurAt(i+x,j+y,p)>-1){
+        while(joueurAt(i+x,j+y,p)==-1){
             case_arrivee.push_back(p->getCase(i+x,j+y));
             x++;y++;
         }
@@ -292,9 +293,10 @@ void Dames::rafle(Case *c){
         }
         while(next!=-2 and adj==-1);
         if(adj!=joueur and next==-1 and adj>-1){
+            Case *miam=p->getCase(i+x,j+y);
             while (next==-1){
                 case_arrivee.push_back(p->getCase(i+x-1,j+y-1));
-                case_a_bouffer.push_back(p->getCase(i+x,j+y));
+                case_a_bouffer.push_back(miam);
                 x--;y--; next=joueurAt(i+x-1,j+y-1,p);
             }
         }
@@ -306,9 +308,10 @@ void Dames::rafle(Case *c){
         }
         while(next!=-2 and adj==-1);
         if(adj!=joueur and next==-1 and adj>-1){
+            Case *miam=p->getCase(i+x,j+y);
             while (next==-1){
                 case_arrivee.push_back(p->getCase(i+x-1,j+y+1));
-                case_a_bouffer.push_back(p->getCase(i+x,j+y));
+                case_a_bouffer.push_back(miam);
                 x--;y++;next=joueurAt(i+x-1,j+y+1,p);
             }
         }
@@ -316,14 +319,15 @@ void Dames::rafle(Case *c){
         x=0; y=0;
         do{
         x++;y--;
-        adj=joueurAt(i+x,j+y,p); next=joueurAt(i+x-1,j+y+1,p);
+        adj=joueurAt(i+x,j+y,p); next=joueurAt(i+x+1,j+y-1,p);
         }
         while(next!=-2 and adj==-1);
         if(adj!=joueur and next==-1 and adj>-1){
+            Case *miam=p->getCase(i+x,j+y);
             while (next==-1){
                 case_arrivee.push_back(p->getCase(i+x+1,j+y-1));
-                case_a_bouffer.push_back(p->getCase(i+x,j+y));
-                x++;y--;next=joueurAt(i+x-1,j+y+1,p);
+                case_a_bouffer.push_back(miam);
+                x++;y--;next=joueurAt(i+x+1,j+y-1,p);
             }
         }
 
@@ -334,8 +338,9 @@ void Dames::rafle(Case *c){
         }
         while(next!=-2 and adj==-1);
         if(adj!=joueur and next==-1 and adj>-1){
+            Case *miam=p->getCase(i+x,j+y);
             while (next==-1){
-                case_a_bouffer.push_back(p->getCase(i+x,j+y));
+                case_a_bouffer.push_back(miam);
                 case_arrivee.push_back(p->getCase(i+x+1,j+y+1));
                 x++;y++;next=joueurAt(i+x+1,j+y+1,p);
             }
