@@ -21,9 +21,16 @@ char Pion::getSymbole() const{
   return symbole;
 }
 
-ostream &operator<<(ostream &os,const Pion &p) {
+string Pion::getNom() const{
+  return nom;
+}
 
+ostream &operator<<(ostream &os,const Pion &p) {
+  if(p.getSymbole() == 0){
+    os << 'O'; 
+  } else {
     os << p.getSymbole();
-    return os;
+  }
+  return os;
 }
 
