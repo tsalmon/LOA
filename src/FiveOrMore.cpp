@@ -367,18 +367,22 @@ int **fusionMatrix(int **m1, int **m2, int nbLignes, int nbColonnes){
     return matrix;
 }
 
-void applyMask(Plateau *p, int **mask,int nbLignes, int nbColonnes){
+bool applyMask(Plateau *p, int **mask,int nbLignes, int nbColonnes){
+    bool retire = false;
     for (int i = 0; i<nbLignes; ++i) {
         for(int j = 0; j<nbColonnes; ++j){
             if (mask[i][j] == 0) {
                 p->getCase(i, j)->retirePion();
+                retire = true;
             }
         }
     }
+    return retire;
 }
 
 
-void FiveOrMore::checkFive(){
+bool FiveOrMore::checkFive(){
+    bool retire;
     Plateau *p = Partie::getPartie()->getPlateau();
     int nbLignes = p->get_sizeX();
     int nbColonnes = p->get_sizeY();
@@ -389,7 +393,7 @@ void FiveOrMore::checkFive(){
     int **fm1 = fusionMatrix(hm, vm, nbLignes, nbColonnes);
     int **fm2 = fusionMatrix(dm1, fm1, nbLignes, nbColonnes);
     int **fm3 = fusionMatrix(dm2, fm2, nbLignes, nbColonnes);
-    applyMask(p, fm3, nbLignes, nbColonnes);
+    retire = applyMask(p, fm3, nbLignes, nbColonnes);
     delete hm;
     delete vm;
     delete dm1;
@@ -397,6 +401,7 @@ void FiveOrMore::checkFive(){
     delete fm1;
     delete fm2;
     delete fm3;
+    return retire;
     
 }
 
@@ -455,6 +460,7 @@ void FiveOrMore::mettreTroisPions(){
 
 void FiveOrMore::newPartie (){
     int srcX, srcY, dstX, dstY;
+    bool retire;
     Plateau *p = Partie::getPartie()->getPlateau();
     mettreTroisPions();
     while(!p->isFull()){
@@ -486,13 +492,19 @@ void FiveOrMore::newPartie (){
             Pion *pBouge = p->pionDansCase(srcX, srcY);
             p->mettrePionDansCase(pBouge, dstX, dstY);
             p->effacerPionDeCase(srcX, srcY);
-            checkFive();
+            retire = checkFive();
             
-            if (!peutJouer())
-                break;
+            /*if (!peutJouer())
+                break;*/
             
-            mettreTroisPions();
-            checkFive();
+            if (!retire){
+                if (!peutJouer())
+                    break;
+                
+                mettreTroisPions();
+            }
+
+            retire = checkFive();
             cout << "Points: " << points << endl;
         } else {
             cout << "Impossible to move this checker to this position. Try again" <<endl;

@@ -28,7 +28,7 @@ private:
     virtual int getNbColonnes();
 
     
-    void checkFive();
+    bool checkFive();
     void mettreTroisPions();
     int **getHorizontalMask();
     int **getVerticalMask();
