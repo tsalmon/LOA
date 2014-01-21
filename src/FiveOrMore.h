@@ -29,6 +29,7 @@ private:
     virtual int fini ();
     
     void checkFive();
+    void mettreTroisPions(vector<Pion*>);
     int **getHorizontalMask();
     int **getVerticalMask();
     int **getDiagonalMask1();

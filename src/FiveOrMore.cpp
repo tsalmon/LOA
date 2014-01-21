@@ -108,24 +108,7 @@ bool possibleRoute(Plateau *p, int srcX, int srcY, int dstX, int dstY){
     }
 }
 
-bool mettreTroisPions(Plateau *p, vector<Pion*> vp){
-    unsigned long cp = vp.size();
-    unsigned long ccl = p->m_casesLibres.size();
-    
-    if (ccl<3)
-        return false;
-    
-    std::vector<Case>::iterator it;
-    
-    for (int i = 0; i<3; ++i) {
-        it = p->m_casesLibres.begin();
-        it+= rand()%ccl;
-        
-        p->mettrePionDansCase(vp[rand()%cp], (*it).getX(), (*it).getY());
-        --ccl;
-    }
-    return true;
-}
+
 
 int **FiveOrMore::getHorizontalMask(){
     Plateau *p = Partie::getPartie()->getPlateau();
@@ -441,19 +424,40 @@ FiveOrMore::~FiveOrMore(){
 }
 
 int FiveOrMore::fini (){
-    return 0;
+    if (!peutJouer()) {
+        return 0;
+    } else{
+        return -1;
+    }
 }
 
 bool FiveOrMore::peutJouer (){
-    return true;
+    Plateau *p = Partie::getPartie()->getPlateau();
+    return (p->m_casesLibres.size()>=3);
+}
+
+void FiveOrMore::mettreTroisPions(/*Plateau *p,*/ vector<Pion*> vp){
+    Plateau *p = Partie::getPartie()->getPlateau();
+    unsigned long cp = vp.size();
+    unsigned long ccl = p->m_casesLibres.size();
+
+    std::vector<Case>::iterator it;
+    
+    for (int i = 0; i<3; ++i) {
+        it = p->m_casesLibres.begin();
+        it+= rand()%ccl;
+        
+        p->mettrePionDansCase(vp[rand()%cp], (*it).getX(), (*it).getY());
+        --ccl;
+    }
 }
 
 void FiveOrMore::newPartie (){
     int srcX, srcY, dstX, dstY;
     Plateau *p = Partie::getPartie()->getPlateau();
-    mettreTroisPions(p, vp);
+    mettreTroisPions(vp);
     while(!p->isFull()){
-        cout << *p << endl;
+        Partie::getPartie()->affiche();
         cout<<"Please, input source X: ";
         cin>>srcX;
         cout<<endl<<"Source Y: ";
@@ -476,22 +480,25 @@ void FiveOrMore::newPartie (){
             cout << "Destination cell has a checker. Try again." << endl;
             continue;
         }
+        
         if (possibleRoute(p, srcX, srcY, dstX, dstY)) {
             Pion *pBouge = p->pionDansCase(srcX, srcY);
             p->mettrePionDansCase(pBouge, dstX, dstY);
             p->effacerPionDeCase(srcX, srcY);
             checkFive();
-            cout << "Points: " << points << endl;
-            if(!mettreTroisPions(p, vp))
-            {
+            
+            if (!peutJouer())
                 break;
-            }
+            
+            mettreTroisPions(vp);
             checkFive();
+            cout << "Points: " << points << endl;
         } else {
             cout << "Impossible to move this checker to this position. Try again" <<endl;
             continue;
         }
     }
+    
     cout<< "Game over!" <<endl;
     cout<< "Total points: "<<points<<endl;
 }
