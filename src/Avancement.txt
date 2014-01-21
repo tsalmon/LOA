@@ -1,0 +1,32 @@
+================================                                                                                       
+                                                                                                                       
+*[Voir le code source en ligne](https://github.com/tsalmon/LOA).*                
+Le diagramme UML est en fichier joint, sous UML.png                                      
+                                                                                                                       
+Ceci est le projet de LOA de 2013-2014                                                                                 
+Nous avons utilisé toute une succession de design pattern, entre autre:  
+                                              
+* Flyweight     
+* Singleton 
+* Factory
+* la chaine de responsabilité
+* Decorator
+
+Jeux
+--------
+
+Comme demandé, nous avons implémenté les jeux suivant:
+
+* Puissance 4
+* Five or More
+* Othello
+
+Ainsi que le jeu de Dames.
+
+
+Nous avons d'abord passé beaucoup de temps sur la modélisation du projet, jusqu'à fin décembre, avant de mettre le projet en pause le temps des examens.
+Puis nous nous sommes répartis les classes à implémenter le week-end du 11 janvier, ce que nous avons pu faire sans nous géner les uns les autres grâce,
+ à un modèle favorisant l'encapsulation et le faible couplage, avant de nous répartir les jeux à implémenter, .le week end du 18.
+Le temps passé sur la modélisation nous a ainsi permit de travailler efficacement à l'implémentation en travaillant tous en même temps sur des classes différentes.
+
+Thomas Salmon, Josian Chevalier, Vladislav Fitc
