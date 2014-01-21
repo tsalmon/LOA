@@ -437,6 +437,7 @@ bool FiveOrMore::peutJouer (){
 }
 
 void FiveOrMore::mettreTroisPions(){
+    srand(unsigned(time(NULL)));
     Plateau *p = Partie::getPartie()->getPlateau();
     unsigned long cp = vp.size();
     unsigned long ccl = p->m_casesLibres.size();

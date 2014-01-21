@@ -15,9 +15,9 @@ private:
   Plateau *plateau;
   void operator=(Partie &){};
   Partie(Partie &);
-public:
   Partie(){}
   ~Partie();
+public:
   static Partie *getPartie();
   int joueTour ();
   void setJeu(Jeu *j);

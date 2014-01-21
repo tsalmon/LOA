@@ -11,6 +11,8 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <time.h>
+#include <stdlib.h>
 
 #include "Plateau.hpp"
 #include "Partie.hpp"
